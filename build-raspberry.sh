@@ -9,10 +9,12 @@ mkdir -m 777 "scanned"  #  Scanned: stored here after CLAMAV has scanned. Kept h
 mkdir -m 777 "transcoded"  # After transcoder is finished, files are moved here and kept there until moved by 
 mkdir "tv"  # Directory to keep tv show files after being downloaded, scanned and transcoded
 mkdir "movies"  # Directory to keep movies files after being downloaded, scanned and transcoded
-
 mkdir "clamav-logs"  # Clamav will store logs here 
 
-#sudo docker rm qbittorrent sonarr radarr jackett bazarr plex
+curl "https://raw.githubusercontent.com/Denperidge/media-raspberry-pie/master/post-download.sh" > downloads/post-download.sh
+chmod +x downloads/post-download.sh
+curl "https://raw.githubusercontent.com/Denperidge/media-raspberry-pie/master/docker-compose.yml" > docker-compose.yml
+
 sudo docker-compose up --detach
 
 clear
