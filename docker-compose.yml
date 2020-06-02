@@ -1,0 +1,105 @@
+version: "2.1"
+services:
+  qbittorrent:
+    image: "linuxserver/qbittorrent"
+    container_name: qbittorrent
+    environment:
+      - PUID=${PUID}
+      - PGID=${PGID}
+      - TZ=${TZ}
+      - UMASK_SET=${UMASK_SET}
+      - WEBUI_PORT=${PORT_QBITTORRENT}
+    volumes:
+      - ${PIE_PATH}/config/qbittorrent:/config
+      - ${PIE_PATH}/downloads:/downloads
+      - ${PIE_PATH}/scanned:/scanned
+      - ${PIE_PATH}/torrents:/torrents
+      - ${PIE_PATH}/clamav-logs:/logs
+    ports:
+      - 6881:6881
+      - 6881:6881/udp
+      - ${PORT_QBITTORRENT}:${PORT_QBITTORRENT}
+    restart: unless-stopped
+    # Escape $ with $
+    command: ["/bin/bash", "-c", "apt-get update && apt-get install -y clamav > /logs/apt-get-$$(date +'%d-%m-%Y--%H-%M-%S').log && freshclam > /logs/freshclam-$$(date +'%d-%m-%Y--%H-%M-%S').log && /init"]
+
+  sonarr:
+    image: linuxserver/sonarr
+    container_name: sonarr
+    environment:
+      - PUID=${PUID}
+      - PGID=${PGID}
+      - TZ=${TZ}
+      - UMASK_SET=${UMASK_SET} #optional
+    volumes:
+      - ${PIE_PATH}/config/sonarr:/config
+      - ${PIE_PATH}/tv:/tv
+      - ${PIE_PATH}/downloads:/downloads
+    ports:
+      - ${PORT_SONARR}:8989
+    restart: unless-stopped
+
+  radarr:
+    image: linuxserver/radarr
+    container_name: radarr
+    environment:
+      - PUID=${PUID}
+      - PGID=${PGID}
+      - TZ=${TZ}
+      - UMASK_SET=${UMASK_SET} #optional
+    volumes:
+      - ${PIE_PATH}/config/radarr:/config
+      - ${PIE_PATH}/movies:/movies
+      - ${PIE_PATH}/downloads:/downloads
+    ports:
+      - ${PORT_RADARR}:7878
+    restart: unless-stopped
+
+  jackett:
+    image: linuxserver/jackett
+    container_name: jackett
+    environment:
+      - PUID=${PUID}
+      - PGID=${PGID}
+      - TZ=${TZ}
+      #- RUN_OPTS=run options here #optional
+    volumes:
+      - ${PIE_PATH}/config/jackett:/config
+      - ${PIE_PATH}/downloads:/downloads
+    ports:
+      - ${PORT_JACKETT}:9117
+    restart: unless-stopped
+  
+  bazarr:
+    image: linuxserver/bazarr
+    container_name: bazarr
+    environment:
+      - PUID=${PUID}
+      - PGID=${PGID}
+      - TZ=${TZ}
+      - UMASK_SET=${UMASK_SET} #optional
+    volumes:
+      - ${PIE_PATH}/config/bazarr:/config
+      - ${PIE_PATH}/movies:/movies
+      - ${PIE_PATH}/tv:/tv
+    ports:
+      - ${PORT_BAZARR}:6767
+    restart: unless-stopped
+  
+  plex:
+    image: linuxserver/plex
+    container_name: plex
+    network_mode: host
+    environment:
+      - PUID=${PUID}
+      - PGID=${PGID}
+      - VERSION=docker
+      - UMASK_SET=022 #optional
+    volumes:
+      - ${PIE_PATH}/config/plex:/config
+      - ${PIE_PATH}/tv:/tv
+      - ${PIE_PATH}/movies:/movies
+    restart: unless-stopped
+  
+
+  
