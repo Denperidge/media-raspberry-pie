@@ -98,3 +98,11 @@ I'll cut straight to the point: for context behind what I do or why I do it, loo
     - Open Settings > Download Client > Add > qBittorrent (http://ip:8989/settings/indexers)
   - Configure Plex: direct your browser of choice to ip:32400/web
     - Configure movies and tv-shows to /movies and /tv respectively
+
+  
+```sh
+curl "https://raw.githubusercontent.com/Denperidge/media-raspberry-pie/master/build-raspberry.sh" > downloads/build-raspberry.sh && chmod +x build-raspberry.sh
+
+curl "https://raw.githubusercontent.com/Denperidge/media-raspberry-pie/master/build-transcoder.sh" > downloads/build-transcoder.sh
+chmod +x build-transcoder.sh
+```
