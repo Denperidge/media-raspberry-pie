@@ -1,7 +1,6 @@
 transcoder_path=$(cat .env | grep TRANSCODER_PATH= | cut -d '=' -f2)
-mkdir $transcoder_path
-cp .env $transcoder_path/.env
-cp transcode.sh $transcoder_path/transcode.sh
+mkdir -p $transcoder_path
+cp {transcode.sh,process-sonarr.py,process-radarr.py,.env} $transcoder_path
 cd $transcoder_path
 
 # Clone mp4 automator and install requirements
