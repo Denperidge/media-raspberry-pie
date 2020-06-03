@@ -1,5 +1,9 @@
 # We will store all the files in the path configured in .env
 # Everything from config to the video files 
+curl "https://raw.githubusercontent.com/Denperidge/media-raspberry-pie/master/docker-compose.yml" > docker-compose.yml
+sudo docker-compose up --detach
+
+
 media_path=$(cat .env | grep MEDIA_PATH= | cut -d '=' -f2)
 mkdir -p $media_path
 cd "$media_path"
@@ -18,9 +22,6 @@ mkdir -p "clamav-logs"  # Clamav will store logs here
 
 curl "https://raw.githubusercontent.com/Denperidge/media-raspberry-pie/master/post-download.sh" > downloads/post-download.sh
 chmod +x downloads/post-download.sh
-curl "https://raw.githubusercontent.com/Denperidge/media-raspberry-pie/master/docker-compose.yml" > docker-compose.yml
-
-sudo docker-compose up --detach
 
 clear
 echo "Open qbittorrent (ip:8080) > tools > options > downloads > Run external program on torrent completion"
