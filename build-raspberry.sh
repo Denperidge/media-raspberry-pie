@@ -1,6 +1,6 @@
 # We will store all the files in the path configured in .env
 # Everything from config to the video files 
-media_path=$(cat .env | grep PIEPATH= | cut -d '=' -f2)
+media_path=$(cat .env | grep MEDIA_PATH= | cut -d '=' -f2)
 mkdir -p media_path
 cd "$media_path"
 
