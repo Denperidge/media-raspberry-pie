@@ -57,5 +57,5 @@ sudo nano /etc/samba/smb.conf
 sudo service smbd restart
 
 clear
-echo "Now, enter the password that'll be used by the transcoder to log in. (Username is $USER)"
-sudo smbpasswd -a $USER
+echo "Use smbpasswd -a $USER to create a password to let the transcoder log in!"
+echo "build-raspberry done"
