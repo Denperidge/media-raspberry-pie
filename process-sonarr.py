@@ -1,6 +1,7 @@
-from repo.autoprocess import sonarr, radarr
-from repo.resources.readsettings import ReadSettings
-from sys import argv
+from autoprocess import sonarr, radarr
+from resources.readsettings import ReadSettings
+from sys import argv, path
+path.insert(1, "repo/")
 
 settings = ReadSettings()
 
