@@ -4,7 +4,7 @@ pie_ip=$(cat .env | grep PIE_IP= | cut -d '=' -f2)
 cd $transcoder_path
 source $transcoder_path/m4avenv/Scripts/activate
 py -3 $transcoder_path/repo/manual.py -i //$pie_ip/to-transcode/sonarr/ -m //$pie_ip/transcoded/sonarr/ --auto
-py -3 $transcoder_path/process.py "$transcoder_path/repo/" "//$pie_ip/to-transcode/sonarr/" sonarr
+py -3 $transcoder_path/process.py "$transcoder_path/repo/" "$MEDIA_PATH/to-transcode/sonarr/" sonarr
 
 py -3 $transcoder_path/repo/manual.py -i //$pie_ip/to-transcode/radarr/ -m //$pie_ip/transcoded/radarr/ --auto
-py -3 $transcoder_path/process.py "$transcoder_path/repo/" "//$pie_ip/to-transcode/sonarr/" radarr
+py -3 $transcoder_path/process.py "$transcoder_path/repo/" "$MEDIA_PATH/to-transcode/radarr/" radarr

@@ -1,14 +1,14 @@
+from sys import argv, path
+path.insert(1, argv[1])
+
 from autoprocess import sonarr, radarr
 from resources.readsettings import ReadSettings
-from sys import argv, path
 
 """
 argv[1] = path to repo
 argv[2] = path to media directory
 argv[3] = sonarr or radarr string
 """
-
-path.insert(1, argv[1])
 
 settings = ReadSettings()
 
