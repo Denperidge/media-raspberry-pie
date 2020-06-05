@@ -1,6 +1,7 @@
 from repo.autoprocess import sonarr, radarr
 from resources.readsettings import ReadSettings
+from sys import argv
 
 settings = ReadSettings()
 
-sonarr.processEpisode(path, settings)
+sonarr.processEpisode(argv[1], settings)
