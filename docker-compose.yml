@@ -35,6 +35,7 @@ services:
       - ${MEDIA_PATH}/config/sonarr:/config
       - ${MEDIA_PATH}/tv:/tv
       - ${MEDIA_PATH}/downloads:/downloads
+      - ${MEDIA_PATH}/transcoded:/import
     ports:
       - ${PORT_SONARR}:8989
     restart: unless-stopped
@@ -51,6 +52,7 @@ services:
       - ${MEDIA_PATH}/config/radarr:/config
       - ${MEDIA_PATH}/movies:/movies
       - ${MEDIA_PATH}/downloads:/downloads
+      - ${MEDIA_PATH}/transcoded:/import
     ports:
       - ${PORT_RADARR}:7878
     restart: unless-stopped
