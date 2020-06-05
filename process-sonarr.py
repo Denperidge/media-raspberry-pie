@@ -1,5 +1,5 @@
 from repo.autoprocess import sonarr, radarr
-from resources.readsettings import ReadSettings
+from repo.resources.readsettings import ReadSettings
 from sys import argv
 
 settings = ReadSettings()
