@@ -4,8 +4,7 @@ cp .env $transcoder_path
 cd $transcoder_path
 
 curl "https://raw.githubusercontent.com/Denperidge/media-raspberry-pie/master/transcode.sh" > transcode.sh
-curl "https://raw.githubusercontent.com/Denperidge/media-raspberry-pie/master/process-sonarr.py" > process-sonarr.py
-curl "https://raw.githubusercontent.com/Denperidge/media-raspberry-pie/master/process-radarr.py" > process-radarr.py
+curl "https://raw.githubusercontent.com/Denperidge/media-raspberry-pie/master/process.py" > process.py
 
 # Clone mp4 automator and install requirements
 git clone https://github.com/mdhiggins/sickbeard_mp4_automator.git repo
