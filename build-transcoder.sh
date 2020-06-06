@@ -14,6 +14,8 @@ py -3 -m pip install -r repo/setup/requirements.txt
 
 
 # Following lines can be removed for non-Windows implementations
-cd "C:/ProgramData/Microsoft/Windows/Start Menu/Programs/StartUp"
 curl "https://raw.githubusercontent.com/Denperidge/media-raspberry-pie/master/windows-task.bat" > scan-for-transcode-hourly.bat
-mv "$transcoder_path/scan-for-transcode-hourly.bat" "C:/ProgramData/Microsoft/Windows/Start Menu/Programs/StartUp"
+echo "The transcoder path and your startup folder will now open in explorer"
+echo "Copy scan-for-transcode-hourly.bat from the transcoder folder to startup to allow windows to run it on startup"
+explorer.exe "shell:startup"
+explorer.exe .
