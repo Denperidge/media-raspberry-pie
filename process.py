@@ -6,16 +6,20 @@ from resources.readsettings import ReadSettings
 
 """
 argv[1] = path to repo
-argv[2] = path to media directory
+argv[2] = relative path to media directory from /import/
 argv[3] = sonarr or radarr string
 """
 
+repo_path = argv[1]
+import_path = "/import/" + argv[2]
+sonarr_or_radarr = argv[3].lower()
+
 settings = ReadSettings()
 
-if "sonarr" in argv[3].lower():
-    sonarr.processEpisode(argv[2], settings)
-elif "radarr" in argv[3].lower():
-    radarr.processEpisode(argv[2], settings)
+if "sonarr" in sonarr_or_radarr:
+    sonarr.processEpisode(import_path, settings)
+elif "radarr" in sonarr_or_radarr:
+    radarr.processEpisode(import_path, settings)
 
 
 

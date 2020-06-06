@@ -8,11 +8,11 @@ source $transcoder_path/m4avenv/Scripts/activate
 cd //$pie_ip/to-transcode/sonarr/
 for d in * ; do
     py -3 "$transcoder_path/repo/manual.py" -i "$d" -m "//$pie_ip/transcoded/sonarr/$d/" --auto --preserverelative
-    py -3 "$transcoder_path/process.py" "$transcoder_path/repo/" "/import/$d/" sonarr
+    py -3 "$transcoder_path/process.py" "$transcoder_path/repo/" "$d/" sonarr
 done
 
 cd //$pie_ip/to-transcode/radarr/
 for d in * ; do
     py -3 "$transcoder_path/repo/manual.py" -i "$d" -m "//$pie_ip/transcoded/radarr/$d/" --auto --preserverelative
-    py -3 "$transcoder_path/process.py" "$transcoder_path/repo/" "/import/$d/" radarr
+    py -3 "$transcoder_path/process.py" "$transcoder_path/repo/" "$d/" radarr
 done
