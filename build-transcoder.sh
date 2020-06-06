@@ -13,6 +13,7 @@ source m4avenv/Scripts/activate
 py -3 -m pip install -r repo/setup/requirements.txt
 
 
-
-#cp transcode.sh "C:/ProgramData/Microsoft/Windows/Start Menu/Programs/StartUp"
-#cd "C:/ProgramData/Microsoft/Windows/Start Menu/Programs/StartUp"
+# Following lines can be removed for non-Windows implementations
+cd "C:/ProgramData/Microsoft/Windows/Start Menu/Programs/StartUp"
+curl "https://raw.githubusercontent.com/Denperidge/media-raspberry-pie/master/windows-task.bat" > scan-for-transcode-hourly.bat
+mv "$transcoder_path/scan-for-transcode-hourly.bat" "C:/ProgramData/Microsoft/Windows/Start Menu/Programs/StartUp"
