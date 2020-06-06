@@ -4,8 +4,15 @@ media_path=$(cat .env | grep MEDIA_PATH= | cut -d '=' -f2)
 
 cd $transcoder_path
 source $transcoder_path/m4avenv/Scripts/activate
-py -3 $transcoder_path/repo/manual.py -i //$pie_ip/to-transcode/sonarr/ -m //$pie_ip/transcoded/sonarr/ --auto
-py -3 $transcoder_path/process.py "$transcoder_path/repo/" "/import/" sonarr
 
-py -3 $transcoder_path/repo/manual.py -i //$pie_ip/to-transcode/radarr/ -m //$pie_ip/transcoded/radarr/ --auto
-py -3 $transcoder_path/process.py "$transcoder_path/repo/" "/import/" radarr
+cd //$pie_ip/to-transcode/sonarr/
+for d in * ; do
+    py -3 "$transcoder_path/repo/manual.py" -i "$d" -m "//$pie_ip/transcoded/sonarr/$d/" --auto --preserverelative
+    py -3 "$transcoder_path/process.py" "$transcoder_path/repo/" "/import/$d/" sonarr
+done
+
+cd //$pie_ip/to-transcode/radarr/
+for d in * ; do
+    py -3 "$transcoder_path/repo/manual.py" -i "$d" -m "//$pie_ip/transcoded/radarr/$d/" --auto --preserverelative
+    py -3 "$transcoder_path/process.py" "$transcoder_path/repo/" "/import/$d/" radarr
+done
