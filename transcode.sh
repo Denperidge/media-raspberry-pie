@@ -1,8 +1,8 @@
+cd $transcoder_path
 transcoder_path=$(cat .env | grep TRANSCODER_PATH= | cut -d '=' -f2)
 pie_ip=$(cat .env | grep PIE_IP= | cut -d '=' -f2)
 media_path=$(cat .env | grep MEDIA_PATH= | cut -d '=' -f2)
 
-cd $transcoder_path
 source $transcoder_path/m4avenv/Scripts/activate
 
 cd //$pie_ip/to-transcode/sonarr/
