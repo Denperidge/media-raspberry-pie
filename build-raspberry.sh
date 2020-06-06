@@ -26,7 +26,7 @@ chmod +x downloads/post-download.sh
 clear
 echo "Open qbittorrent (ip:8080) > tools > options > downloads > Run external program on torrent completion"
 echo "Enable it and insert the following line:"
-echo "/bin/bash /downloads/post-download.sh \"%R\" \"%N\" \"%C\""
+echo "/bin/bash /downloads/post-download.sh \"%R\" \"%N\" \"%L\""
 echo "and press Save"
 read
 
