@@ -14,6 +14,7 @@ I wanted to see if I could make the following process to be set up in no more th
 You *could* build a dedicated machine for your media, but that'll cost you quite a few hundred bucks. The Raspberry Pie doesn't need anything but a small purchase and some storage. And most of use a computer besides the Raspberry Pie either way, so that that computer can handle the transcoding.
 
 ## Disclaimers
+---
 
 <details>
   <summary>Don't sue me disclaimer</summary>
@@ -47,37 +48,60 @@ You *could* build a dedicated machine for your media, but that'll cost you quite
 
 
 ## Instructions
+---
+You'll need:
+- A Raspberry Pi -> this will download, store and stream your media
+- A (Windows) computer -> this will transcode the media to lighten the load on the Raspberry Pi
+
+The instructions will refer to:
+- The Raspberry Pi as **(media)-rpi**
+- The Windows machine as **transcoder**
+
 I'll cut straight to the point: for context behind what I do or why I do it, look at [the explanations](#explanations)
 
-### In case you haven't set up your Raspberry Pie yet
+### In case you haven't set up your Raspberry Pi yet
 - Get yourself prefferably desktop-GUI-less, 64bit distro on your Raspberry Pi [(Raspberry's Imager tool is my tool of choice)](https://www.raspberrypi.org/downloads/)
 - [Enhance the security](https://www.raspberrypi.org/documentation/configuration/security.md)
 - [If you want, give yourself a static ip address for convenience](https://thepihut.com/blogs/raspberry-pi-tutorials/how-to-give-your-raspberry-pi-a-static-ip-address-update)
+- [If you want, put your dphys-swapfile on an external drive to up the performance of your rpi](http://manpages.ubuntu.com/manpages/bionic/man8/dphys-swapfile.8.html)
 
 
-### Install prerequisites
+### Install prerequisites on rpi
 - [Install Docker](https://www.raspberrypi.org/blog/docker-comes-to-raspberry-pi/)
 - Install [pip](https://www.raspberrypi.org/documentation/linux/software/python.md) and [Docker Compose](https://docs.docker.com/compose/install/#install-using-pip)
-- Install ffmpeg and git (```sudo apt-get install ffmpeg git```)
+- Install and git (```sudo apt-get install git```)
 
-### Setup
-- Create a new folder to store the configuration of Docker. cd into it and wget the [docker-compose]() and the [.env]() file
-- Customize the .env file to:
+### Install prerequisites on Transcoder
+- [A Git install](https://git-scm.com/download/win)
+- You'll need a program that can run .sh files. Luckily, the git installation above here comes with Git Bash
+
+### Installation
+- Download the .env.example and rename it to .env
+- Customize the .env file:
+  - PUID = The ID of the user that you'd like to assign to the to-be-downloaded-files
+  - PGID = The ID of the group that you'd like to assign to the to-be-downloaded-files
+  - TZ = Your [TZ Timezone database name](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones)
+  - The umask that will be applied to downloaded files (default is 022)
   - Point to the *absolute* paths you'd like to use
-  - Point to your [TZ Timezone database name](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones)
-  - The ID of the user (PUID) and group (PGID) that you'd like to assign to the to-be-downloaded-files
-  - The umask (default is 022)
- - ```sudo docker-compose up```
- - Now we'll configure our services:
+  - PORT_{SERVICE} = The port on which you'll be able to access the service
+  - MEDIA_PATH = the **absolute** path where the media-rpi will store all the created files (downloads, config, logs, scripts, and video files)
+  - TRANSCODER_PATH = The **absolute** path where the transcoder will keep the scripts to transcode
+  - PIE_IP = The static ip of your rpi (or hostname, if you customize your hosts/are running a custom DNS)
+- Put the .env in a folder on the Raspberry Pi as well as the transcoder
+  - Download & run build-transcoder.sh from the same folder as the .env on the transcoder
+  - Download & run build-raspberry.sh from the same folder as the .env on the rpi, and follow the instructions shown in it
+
+
+### Initial setup
   - Configure Jackett: direct your browser of choice to ip:9117
     - Press `Add indexer` and add your favourites
     - Follow the instructions provided in Jackett for Sonarr and Radarr
     - <details>
-        <summary>Config assistance</summary>
+        <summary>Config assistance whilst adding indexer in Sonarr/Radarr</summary>
         
         ----
   
-        Name: personal reference, usually the name of the indexer
+        Name: personal preference, usually the name of the indexer
   
         ----
         
