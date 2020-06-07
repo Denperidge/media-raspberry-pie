@@ -16,9 +16,9 @@ mkdir -p -m 777 "scanned/radarr"
 mkdir -p -m 777 "transcoded"  # After transcoder is finished, files are moved here and kept there until moved by 
 mkdir -p -m 777 "transcoded/sonarr"
 mkdir -p -m 777 "transcoded/radarr"
+mkdir -p -m 777 "logs"  # Logs will be stored here 
 mkdir -p "tv"  # Directory to keep tv show files after being downloaded, scanned and transcoded
 mkdir -p "movies"  # Directory to keep movies files after being downloaded, scanned and transcoded
-mkdir -p -m 777 "logs"  # Logs will be stored here 
 
 curl "https://raw.githubusercontent.com/Denperidge/media-raspberry-pie/master/post-download.sh" > downloads/post-download.sh
 chmod +x downloads/post-download.sh
