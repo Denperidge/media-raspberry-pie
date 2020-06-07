@@ -14,7 +14,7 @@ services:
       - ${MEDIA_PATH}/downloads:/downloads
       - ${MEDIA_PATH}/scanned:/scanned
       - ${MEDIA_PATH}/torrents:/torrents
-      - ${MEDIA_PATH}/clamav-logs:/logs
+      - ${MEDIA_PATH}/logs:/logs
     ports:
       - 6881:6881
       - 6881:6881/udp

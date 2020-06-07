@@ -7,12 +7,12 @@ source $transcoder_path/m4avenv/Scripts/activate
 
 cd //$pie_ip/to-transcode/sonarr/
 for d in * ; do
-    py -3 "$transcoder_path/repo/manual.py" -i "$d" -m "//$pie_ip/transcoded/sonarr/$d/" --auto --preserverelative
-    py -3 "$transcoder_path/process.py" "$transcoder_path/repo/" "$d/" sonarr
+    py -3 "$transcoder_path/repo/manual.py" -i "$d" -m "//$pie_ip/transcoded/sonarr/$d/" --auto --preserverelative > "//$pie_ip/logs/transcode-process-sonarr-$d-$(date +'%d-%m-%Y--%H-%M-%S').log"
+    py -3 "$transcoder_path/process.py" "$transcoder_path/repo/" "$d/" sonarr >> "//$pie_ip/logs/transcode-process-sonarr-$d-$(date +'%d-%m-%Y--%H-%M-%S').log"
 done
 
 cd //$pie_ip/to-transcode/radarr/
 for d in * ; do
-    py -3 "$transcoder_path/repo/manual.py" -i "$d" -m "//$pie_ip/transcoded/radarr/$d/" --auto --preserverelative
-    py -3 "$transcoder_path/process.py" "$transcoder_path/repo/" "$d/" radarr
+    py -3 "$transcoder_path/repo/manual.py" -i "$d" -m "//$pie_ip/transcoded/radarr/$d/" --auto --preserverelative > "//$pie_ip/logs/transcode-process-radarr-$d-$(date +'%d-%m-%Y--%H-%M-%S').log"
+    py -3 "$transcoder_path/process.py" "$transcoder_path/repo/" "$d/" radarr >> "//$pie_ip/logs/transcode-process-radarr-$d-$(date +'%d-%m-%Y--%H-%M-%S').log"
 done

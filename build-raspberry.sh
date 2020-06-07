@@ -10,15 +10,15 @@ cd "$media_path"
 
 mkdir "downloads"  # Downloads: stored here after download in qbittorrent
 mkdir "torrents"  #  Torrents: .torrent files are kept here
-mkdir -p -m 1777 "scanned"  #  Scanned: stored here after CLAMAV has scanned. Kept here until transcoder moves them
-mkdir -p -m 1777 "scanned/sonarr"
-mkdir -p -m 1777 "scanned/radarr"
-mkdir -p -m 1777 "transcoded"  # After transcoder is finished, files are moved here and kept there until moved by 
-mkdir -p -m 1777 "transcoded/sonarr"
-mkdir -p -m 1777 "transcoded/radarr"
+mkdir -p -m 777 "scanned"  #  Scanned: stored here after CLAMAV has scanned. Kept here until transcoder moves them
+mkdir -p -m 777 "scanned/sonarr"
+mkdir -p -m 777 "scanned/radarr"
+mkdir -p -m 777 "transcoded"  # After transcoder is finished, files are moved here and kept there until moved by 
+mkdir -p -m 777 "transcoded/sonarr"
+mkdir -p -m 777 "transcoded/radarr"
 mkdir -p "tv"  # Directory to keep tv show files after being downloaded, scanned and transcoded
 mkdir -p "movies"  # Directory to keep movies files after being downloaded, scanned and transcoded
-mkdir -p "clamav-logs"  # Clamav will store logs here 
+mkdir -p -m 777 "logs"  # Logs will be stored here 
 
 curl "https://raw.githubusercontent.com/Denperidge/media-raspberry-pie/master/post-download.sh" > downloads/post-download.sh
 chmod +x downloads/post-download.sh
@@ -48,6 +48,14 @@ echo
 echo [transcoded]
 echo Comment = Folder to allow transcoder to reach files
 echo Path = $media_path/transcoded
+echo Browseable = yes
+echo Writeable = Yes
+echo only guest = no
+echo Public = yes
+echo
+echo [logs]
+echo Comment = Folder to allow transcoder to reach files
+echo Path = $media_path/logs
 echo Browseable = yes
 echo Writeable = Yes
 echo only guest = no
