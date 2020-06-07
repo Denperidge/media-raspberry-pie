@@ -74,6 +74,57 @@ I'll cut straight to the point: for context behind what I do or why I do it, loo
 ### Install prerequisites on Transcoder
 - [A Git install](https://git-scm.com/download/win)
 - You'll need a program that can run .sh files. Luckily, the git installation above here comes with Git Bash
+- FFMPEG:
+  - Note: some own choices are advised by me personally --> these are usually broad tools which may help with specific encodings, even if not as common 
+  - **Select the build target system:** Select both (1) or 64-bit (3)
+  - **Build FFmpeg with which license?** Non-free (1)
+  - **Build standalone binaries for libraries included in FFmpeg?** Yes (1)
+  - **Build vpx [VP8/VP9 encoder]?** Own choice, advised
+  - **Build aom [Alliance for Open Media codec]?** Own choice, advised
+  - **Build rav1e [Alternative, faster AV1 standalone encoder]?** Own choice
+  - **Build dav1d [Alternative, faster AV1 decoder]?** Own choice
+  - **Build x264 [H.264 encoder]?** Lib/binary with 8 and 10-bit (1) or Lib/binary with 8 and 10-bit, and libavformat and ffms2 (4)
+  - **Build x265 [5.265 encoder]?** Own choice, advised
+  - **Build Kvazaar? [H.265 encoder]** Own choice
+  - **Build SVT-HEVC? [H.265 encoder]** Own choice
+  - **Build xvc? [HEVC and AV1 competitor]** Own choice, *not advised* by the builder itself
+  - **Build Fraunhofer VVC? [H.265 successor enc/decoder]** Own choice
+  - **Build SVT-AV1? [AV1 encoder]** Own choice
+  - **Build SVT-VP9? [VP9 encoder]** Own choice
+  - **Build FLAC? [Free Lossless Audio Codec]** Own choice
+  - **Build FDK-AAC library and binary? [AAC-LC/HE/HEv2 codec]** Yes (1)
+  - **Build FAAC library and binary? [old, low-quality and nonfree AAC-LC codec]** Own choice, *not advised* by the builder 
+  - **Build exhale binary? [open-source ISO/IEC 23003-3 USAC, xHE-AAC encoder]** Own choice
+  - **Build mediainfo binaries [Multimedia file information tool]?** Own choice
+  - **Build sox binaries [Sound processing tool]?** Own choice
+  - **Build FFmpeg binaries and libraries:** Yes (1), or another yes-answer if you know what you're doing
+  - **Always build FFmpeg when libraries have been updated?** Own choice
+  - **Choose ffmpeg and mpv optional libraries?** No (Light build) (2) or Yes (1)
+  - **Build static mp4box [mp4 muxer/toolbox] binary?** Own choice
+  - **Build static rtmpdump binaries [rtmp tools]?** Own choice, *not advised* by the builder itself 
+  - **Build mpv?** Own choice
+  - **Build vlc?** Own choice, *not advised* by the builder itself 
+  - **Build static bmx tools?** Own choice
+  - **Build static curl?** Own choice
+  - **Build FFMedia Broadcast binary?** Own choice, *not advised* by the builder itself 
+  - **Build cyanrip (CLI CD ripper)?** Own choice
+  - **Build redshift (f.lux FOSS clone)?** Own choice
+  - **Build ripgrep (faster grep in Rust)?** Own choice
+  - **Build jq (CLI JSON processor)?** Own choice
+  - **Build jo (CLI JSON from shell)?** Own choice
+  - **Build dssim (multiscale SSIM in Rust)?** Own choice
+  - **Build avs2 (Audio Video Coding Standard Gen2 encoder/decoder)?** Own choice
+  - **Use clang instead of gcc (C compiler)?** No (2)
+  - **Number of CPU Cores/Threads for compiling:** 2 or 4, depending on your pc. If you're doubting, use 2.
+  - **Number of CPU Cores/Threads for compiling:** Yes (1)
+  - **Strip compiled files binaries?** Yes (1)
+  - **Pack compiled files?** No (2)
+  - **Write logs of compilation commands?** Yes (1)
+  - **Create script to update suite files automatically?** Own choice
+  - **Create script to update suite files automatically?** Own choice
+  - **Use ccache when compiling?** Own choice
+  - **Are you running this script through ssh or similar?** Own choice. If you don't know what this means, you probably didn't.
+
 
 ### Installation
 - Download the .env.example and rename it to .env
