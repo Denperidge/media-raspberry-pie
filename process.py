@@ -19,7 +19,7 @@ settings = ReadSettings()
 if "sonarr" in sonarr_or_radarr:
     sonarr.processEpisode(import_path, settings)
 elif "radarr" in sonarr_or_radarr:
-    radarr.processEpisode(import_path, settings)
+    radarr.processMovie(import_path, settings)
 
 
 
