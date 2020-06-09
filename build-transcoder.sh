@@ -42,9 +42,6 @@ echo "Copy scan-hourly-for-transcode.bat from the transcoder folder to startup t
 explorer.exe "shell:startup"
 explorer.exe .
 
-start https://www.microsoft.com/en-us/p/ubuntu/9nblggh4msv6
-echo "dism.exe /online /enable-feature /featurename:Microsoft-Windows-Subsystem-Linux /all /norestart"
-echo "Enable-WindowsOptionalFeature -online -featurename Microsoft-Windows-Subsystem-Linux"
 
 
 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)"
