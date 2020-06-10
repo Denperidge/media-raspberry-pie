@@ -72,10 +72,14 @@ I'll cut straight to the point: for context behind what I do or why I do it, loo
 - Install and git (```sudo apt-get install git```)
 
 ### Install prerequisites on Transcoder
-- A WSL (Windows Subsystem for Linux) install. You can choose to follow the [Microsoft](https://docs.microsoft.com/en-us/windows/wsl/install-win10) docs, or simply do the two instructions below to get going quickly
+- A WSL (Windows Subsystem for Linux) 2 install. You can choose to follow the [Microsoft](https://docs.microsoft.com/en-us/windows/wsl/install-win10) docs, or simply do the two instructions below to get going quickly
   1. From a Powershell session run as admin, run
-      
-      `Enable-WindowsOptionalFeature -online -featurename Microsoft-Windows-Subsystem-Linux`
+      ```powershell
+      Enable-WindowsOptionalFeature -online -featurename Microsoft-Windows-Subsystem-Linux`
+      dism.exe /online /enable-feature /featurename:VirtualMachinePlatform /all /norestart
+      wsl --set-default-version 2
+      ```
+      (Note: if you've already got a WSL 1 installation that you'd like to re-use, use `wsl --set-version <distribution name> <versionNumber>`)
   2. Restart your computer
   3. Use the Microsoft Store to download any distro. I personally used [Ubuntu](https://www.microsoft.com/en-us/p/ubuntu/9nblggh4msv6)
 
