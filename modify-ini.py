@@ -15,7 +15,7 @@ config.read(ini_path)
 
 config["Converter"]["ffmpeg"] = "ffmpeg"
 config["Converter"]["ffprobe"] = "ffprobe"
-config["Converter"]["process-same-extensions"] = True
+config["Converter"]["process-same-extensions"] = "True"
 
 config["Video"]["profile"] = "high"
 config["Video"]["max-level"] = "4.2"
