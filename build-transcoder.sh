@@ -23,8 +23,8 @@ echo -e "\nusername=$smb_username" | sudo tee -a /etc/samba/user
 echo -e "password=$smb_password\n" | sudo tee -a /etc/samba/user
 sudo chmod 0400 /etc/samba/user
 
-echo -e "\n//$pie_ip/to-transcode  $transcoder_path/mnt/to-transcode  cifs  credentials=/etc/samba/user,noexec  0 0\n" | sudo tee -a /etc/fstab
-echo -e "\n//$pie_ip/transcoded  $transcoder_path/mnt/transcoded  cifs  credentials=/etc/samba/user,noexec  0 0\n" | sudo tee -a /etc/fstab
+echo -e "\n//$pie_ip/to-transcode  $transcoder_path/mnt/to-transcode  cifs  credentials=/etc/samba/user,noexec  0 0" | sudo tee -a /etc/fstab
+echo -e "//$pie_ip/transcoded  $transcoder_path/mnt/transcoded  cifs  credentials=/etc/samba/user,noexec  0 0\n" | sudo tee -a /etc/fstab
 
 sudo mount "$transcoder_path/mnt/to-transcode"
 sudo mount "$transcoder_path/mnt/transcoded"
@@ -50,7 +50,6 @@ python3 -m venv m4avenv
 source m4avenv/bin/activate
 python3 -m pip install -r repo/setup/requirements.txt
 
-git clone https://git.ffmpeg.org/ffmpeg.git ffmpeg
 
 exit
 
