@@ -69,16 +69,36 @@ I'll cut straight to the point: for context behind what I do or why I do it, loo
 ### Install prerequisites on rpi
 - [Install Docker](https://www.raspberrypi.org/blog/docker-comes-to-raspberry-pi/)
 - Install [pip](https://www.raspberrypi.org/documentation/linux/software/python.md) and [Docker Compose](https://docs.docker.com/compose/install/#install-using-pip)
-- Install and git (```sudo apt-get install git```)
+- Install git (```sudo apt-get install git```)
 
 ### Install prerequisites on Transcoder
-- A WSL (Windows Subsystem for Linux) install. You can choose to follow the [Microsoft](https://docs.microsoft.com/en-us/windows/wsl/install-win10) docs, or simply do the two instructions below to get going quickly
-  1. From a Powershell session run as admin, run
-      
-      `Enable-WindowsOptionalFeature -online -featurename Microsoft-Windows-Subsystem-Linux`
-      (Note: if you've already got a WSL 1 installation that you'd like to re-use, use `wsl --set-version <distribution name> <versionNumber>`)
-  2. Restart your computer
-  3. Use the Microsoft Store to download any distro. I personally used [Ubuntu](https://www.microsoft.com/en-us/p/ubuntu/9nblggh4msv6)
+<details>
+    <summary>"My transcoder will run on a Windows machine"</summary>
+
+  - [Python 3](https://www.python.org/downloads/)
+    - Python 3 has to be added to path. The installer does take care of this, provided you don't uncheck the box
+  - [FFMPEG](https://ffmpeg.org/download.html)
+    - FFMPEG has to be added to path, yet this has to happen manually
+  - [A Git install](https://git-scm.com/download/)
+  - You'll need the ability to run .sh files. If you're on Windows, the git installation above here comes with Git Bash
+
+</details>
+<details>
+  <summary>"My transcoder will run on a Linux machine"</summary>
+
+  - [Python 3](https://www.python.org/downloads/)
+    - If not handled by your distros python3 install, be sure that python3-pip is also installed
+  - [FFMPEG](https://ffmpeg.org/download.html)
+  - Git
+  - (All of the above have to be added to path!)
+
+  This script is meant to be quickly portable to Linux, and has most of the work done already to make the transition smoother. The remainder of the work should not be an issue if you've become at least a bit comfortable with your distro! Simply make sure that transcode.sh is run on an hourly basis (or whatever timeframe you prefer) and you're all settled
+
+  
+  
+</details>
+
+
 
 
 ### Installation
