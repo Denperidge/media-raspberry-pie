@@ -37,7 +37,8 @@ if ! [ -d "repo" ]; then
     git clone https://github.com/mdhiggins/sickbeard_mp4_automator.git repo
     $python -m pip install -r repo/setup/requirements.txt
     cp repo/setup/autoProcess.ini.sample repo/config/autoProcess.ini
-    # TODO: modify ini file
+    $python -m pip python-dotenv
+    $python "modify-ini.py"
 fi
 
 curl "https://raw.githubusercontent.com/Denperidge/media-raspberry-pie/master/transcode.sh" > transcode.sh

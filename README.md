@@ -113,6 +113,7 @@ I'll cut straight to the point: for context behind what I do or why I do it, loo
   - MEDIA_PATH = the **absolute** path where the media-rpi will store all the created files (downloads, config, logs, scripts, and video files)
   - TRANSCODER_PATH = The **absolute** path where the transcoder will keep the scripts to transcode
   - PIE_IP = The static ip of your rpi (or hostname, if you customize your hosts/are running a custom DNS)
+  - If you are using a 1st or 2nd Gen Chromecast, add CHROMECAST_GEN_1_OR_2=True to your .env file. Do NOT add this line otherwise (as adding it will disable 1080p@60fps, nevertheless how uncommon that may be)
 - Put the .env in a folder on the Raspberry Pi as well as the transcoder
   - On the transcoder: download & run build-transcoder.sh (from the same folder as the .env)
   - From the rpi: download & run build-raspberry.sh (from the same folder as the .env), and follow the instructions shown in it
