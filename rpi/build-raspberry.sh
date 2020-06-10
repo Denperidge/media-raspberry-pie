@@ -38,28 +38,28 @@ echo "downloads setup complete, now setup for transcoding!"
 echo "A samba share will now be set up, used by the transcoder to transcode"
 echo "/etc/samba/smb.conf will now be opened. Copy the the following lines and add them to the bottom."
 echo [scanned]
-echo Comment = Folder to allow transcoder to reach files
-echo Path = $media_path/scanned
-echo Browseable = yes
-echo Writeable = Yes
-echo only guest = no
-echo Public = yes
+echo Comment = Folder to allow transcoder to reach files that have to be transcoded
+echo "   Path = $media_path/scanned"
+echo "   Browseable = yes"
+echo "   Writeable = Yes"
+echo "   only guest = no"
+echo "   Public = yes"
 echo
 echo [transcoded]
-echo Comment = Folder to allow transcoder to reach files
-echo Path = $media_path/transcoded
-echo Browseable = yes
-echo Writeable = Yes
-echo only guest = no
-echo Public = yes
+echo "   Comment = Folder where the transcoder will put transcoded files"
+echo "   Path = $media_path/transcoded"
+echo "   Browseable = yes"
+echo "   Writeable = Yes"
+echo "   only guest = no"
+echo "   Public = yes"
 echo
 echo [logs]
-echo Comment = Folder to allow transcoder to reach files
-echo Path = $media_path/logs
-echo Browseable = yes
-echo Writeable = Yes
-echo only guest = no
-echo Public = yes
+echo "   Comment = Folder to allow transcoder to read logs if need be"
+echo "   Path = $media_path/logs"
+echo "   Browseable = yes"
+echo "   Writeable = Yes"
+echo "   only guest = no"
+echo "   Public = yes"
 read
 sudo nano /etc/samba/smb.conf
 
