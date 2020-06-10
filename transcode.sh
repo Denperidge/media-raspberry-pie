@@ -1,11 +1,7 @@
-transcoder_path=$(cat .env | grep TRANSCODER_PATH= | cut -d '=' -f2)
-pie_ip=$(cat .env | grep PIE_IP= | cut -d '=' -f2)
-media_path=$(cat .env | grep MEDIA_PATH= | cut -d '=' -f2)
-
-smb="%transcoder_path%/mnt/"
-
 cd %transcoder_path%
 source %transcoder_path%/m4avenv/bin/activate
+
+smb="%transcoder_path%/mnt/"
 
 cd "$smb/to-transcode/sonarr/"
 for d in * ; do
