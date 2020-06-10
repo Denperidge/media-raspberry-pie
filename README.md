@@ -93,8 +93,6 @@ I'll cut straight to the point: for context behind what I do or why I do it, loo
   - (All of the above have to be added to path!)
 
   This script is meant to be quickly portable to Linux, and has most of the work done already to make the transition smoother. The remainder of the work should not be an issue if you've become at least a bit comfortable with your distro! Simply make sure that transcode.sh is run on an hourly basis (or whatever timeframe you prefer) and you're all settled
-
-  
   
 </details>
 
@@ -107,8 +105,7 @@ I'll cut straight to the point: for context behind what I do or why I do it, loo
   - PUID = The ID of the user that you'd like to assign to the to-be-downloaded-files
   - PGID = The ID of the group that you'd like to assign to the to-be-downloaded-files
   - TZ = Your [TZ Timezone database name](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones)
-  - The umask that will be applied to downloaded files (default is 022)
-  - Point to the *absolute* paths you'd like to use
+  - UMASK_SET = The umask that will be applied to downloaded files (default is 022)
   - PORT_{SERVICE} = The port on which you'll be able to access the service
   - MEDIA_PATH = the **absolute** path where the media-rpi will store all the created files (downloads, config, logs, scripts, and video files)
   - TRANSCODER_PATH = The **absolute** path where the transcoder will keep the scripts to transcode

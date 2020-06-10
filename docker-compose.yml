@@ -30,7 +30,7 @@ services:
       - PUID=${PUID}
       - PGID=${PGID}
       - TZ=${TZ}
-      - UMASK_SET=${UMASK_SET} #optional
+      - UMASK_SET=${UMASK_SET}
     volumes:
       - ${MEDIA_PATH}/config/sonarr:/config
       - ${MEDIA_PATH}/tv:/tv
@@ -47,7 +47,7 @@ services:
       - PUID=${PUID}
       - PGID=${PGID}
       - TZ=${TZ}
-      - UMASK_SET=${UMASK_SET} #optional
+      - UMASK_SET=${UMASK_SET}
     volumes:
       - ${MEDIA_PATH}/config/radarr:/config
       - ${MEDIA_PATH}/movies:/movies
@@ -64,7 +64,6 @@ services:
       - PUID=${PUID}
       - PGID=${PGID}
       - TZ=${TZ}
-      #- RUN_OPTS=run options here #optional
     volumes:
       - ${MEDIA_PATH}/config/jackett:/config
       - ${MEDIA_PATH}/downloads:/downloads
@@ -79,7 +78,7 @@ services:
       - PUID=${PUID}
       - PGID=${PGID}
       - TZ=${TZ}
-      - UMASK_SET=${UMASK_SET} #optional
+      - UMASK_SET=${UMASK_SET}
     volumes:
       - ${MEDIA_PATH}/config/bazarr:/config
       - ${MEDIA_PATH}/movies:/movies
@@ -96,7 +95,7 @@ services:
       - PUID=${PUID}
       - PGID=${PGID}
       - VERSION=docker
-      - UMASK_SET=022 #optional
+      - UMASK_SET=${UMASK_SET}
     volumes:
       - ${MEDIA_PATH}/config/plex:/config
       - ${MEDIA_PATH}/tv:/tv
