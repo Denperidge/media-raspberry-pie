@@ -14,7 +14,6 @@ I wanted to see if I could make the following process to be set up in no more th
 You *could* build a dedicated machine for your media, but that'll cost you quite a few hundred bucks. The Raspberry Pie doesn't need anything but a small purchase and some storage. And most of use a computer besides the Raspberry Pie either way, so that that computer can handle the transcoding.
 
 ## Disclaimers
----
 
 <details>
   <summary>Don't sue me disclaimer</summary>
@@ -48,7 +47,6 @@ You *could* build a dedicated machine for your media, but that'll cost you quite
 
 
 ## Instructions
----
 You'll need:
 - A Raspberry Pi -> this will download, store and stream your media
 - A computer with a good CPU, any OS -> this will transcode the media to lighten the load on the Raspberry Pi
@@ -59,19 +57,24 @@ The instructions will refer to:
 
 I'll cut straight to the point: for context behind what I do or why I do it, look at [the explanations](#explanations)
 
+___
 ### In case you haven't set up your Raspberry Pi yet
+
 - Get yourself prefferably desktop-GUI-less, 64bit distro on your Raspberry Pi [(Raspberry's Imager tool is my tool of choice)](https://www.raspberrypi.org/downloads/)
 - [Enhance the security](https://www.raspberrypi.org/documentation/configuration/security.md)
 - [If you want, give yourself a static ip address for convenience](https://thepihut.com/blogs/raspberry-pi-tutorials/how-to-give-your-raspberry-pi-a-static-ip-address-update)
 - [If you want, put your dphys-swapfile on an external drive to up the performance of your rpi](http://manpages.ubuntu.com/manpages/bionic/man8/dphys-swapfile.8.html)
 
-
+___
 ### Install prerequisites on rpi
+
 - [Install Docker](https://www.raspberrypi.org/blog/docker-comes-to-raspberry-pi/)
 - Install [pip](https://www.raspberrypi.org/documentation/linux/software/python.md) and [Docker Compose](https://docs.docker.com/compose/install/#install-using-pip)
 - Install git (```sudo apt-get install git```)
 
+___
 ### Install prerequisites on Transcoder
+
 <details>
     <summary>"My transcoder will run on a Windows machine"</summary>
 
@@ -97,9 +100,10 @@ I'll cut straight to the point: for context behind what I do or why I do it, loo
 </details>
 
 
-
+___
 
 ### Preparation
+
 - Download the .env.example and rename it to .env
 - Customize the .env file:
   - PUID = The ID of the user that you'd like to assign to the to-be-downloaded-files
@@ -116,6 +120,7 @@ I'll cut straight to the point: for context behind what I do or why I do it, loo
   - From the rpi: download & run build-raspberry.sh (from the same folder as the .env), and follow the instructions shown in it
 
 
+___
 ### Initial setup (rpi)
 Execute the following command in the same folder as your .env is located on the rpi
 ```sh
@@ -159,6 +164,7 @@ run build-raspberry.sh and follow the instructions provided therein. Afterwards,
     - Configure movies and tv-shows to /movies and /tv respectively
 
 
+___
 ### Initial setup (Transcoder)
 Execute the following command in the same folder as your .env is located on the rpi
 ```sh
@@ -166,7 +172,7 @@ curl "https://raw.githubusercontent.com/Denperidge/media-raspberry-pie/master/tr
 ```
 run build-transcoder.sh and follow the instructions provided therein
 
-
+___
 ### Finished
 
 And that's it! Let me know if you encounter any bugs or issues, and let me know how the experience goes. It's definitely an unconventional setup, and more of a fun thing to try
