@@ -27,7 +27,7 @@ chmod +x transcode.sh
 
 # Create venv if need be
 if ! [ -d "m4avenv" ]; then
-    python3 -m pip venv
+    python3 -m pip install venv
     python3 -m venv m4avenv
 fi
 
@@ -43,7 +43,7 @@ if ! [ -d "repo" ]; then
     git clone https://github.com/mdhiggins/sickbeard_mp4_automator.git repo
     $python -m pip install -r repo/setup/requirements.txt
     cp repo/setup/autoProcess.ini.sample repo/config/autoProcess.ini
-    $python -m pip python-dotenv
+    $python -m pip install python-dotenv
     $python "modify-ini.py"
 fi
 
