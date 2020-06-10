@@ -19,6 +19,12 @@ mkdir -p $transcoder_path
 cp .env $transcoder_path
 cd $transcoder_path
 
+# Fetch scripts
+curl "https://raw.githubusercontent.com/Denperidge/media-raspberry-pie/master/transcode.sh" > transcode.sh
+curl "https://raw.githubusercontent.com/Denperidge/media-raspberry-pie/master/process.py" > process.py
+curl "https://raw.githubusercontent.com/Denperidge/media-raspberry-pie/master/modify-ini.py" > modify-ini.py
+chmod +x transcode.sh
+
 # Create venv if need be
 if ! [ -d "m4avenv" ]; then
     python3 -m pip venv
@@ -40,10 +46,6 @@ if ! [ -d "repo" ]; then
     $python -m pip python-dotenv
     $python "modify-ini.py"
 fi
-
-curl "https://raw.githubusercontent.com/Denperidge/media-raspberry-pie/master/transcode.sh" > transcode.sh
-curl "https://raw.githubusercontent.com/Denperidge/media-raspberry-pie/master/process.py" > process.py
-chmod +x transcode.sh
 
 # For Windows, assist with automatic startup configuration
 if [ $os = "windows" ]; then  
