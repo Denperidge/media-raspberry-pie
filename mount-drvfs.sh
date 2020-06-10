@@ -1,5 +1,3 @@
-transcoder_path=$(cat .env | grep TRANSCODER_PATH= | cut -d '=' -f2)
-pie_ip=$(cat .env | grep PIE_IP= | cut -d '=' -f2)
-
-mount -t drvfs //192.168.0.230/to-transcode /home/stijn/rpi-transcoder/mnt/to-transcode/
-mount -t drvfs //192.168.0.230/transcoded /home/stijn/rpi-transcoder/mnt/transcoded/
+sudo mount -t drvfs "//%pie_ip%/to-transcode" "%transcoder_path%/mnt/to-transcode/"
+sudo mount -t drvfs "//%pie_ip%/transcoded" "%transcoder_path%/mnt/transcoded/"
+sudo mount -t drvfs "//%pie_ip%/logs" "%transcoder_path%/mnt/logs/"
