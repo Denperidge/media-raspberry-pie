@@ -1,6 +1,6 @@
 # We will store all the files in the path configured in .env
 # Everything from config to the video files 
-curl "https://raw.githubusercontent.com/Denperidge/media-raspberry-pie/master/docker-compose.yml" > docker-compose.yml
+curl "https://raw.githubusercontent.com/Denperidge/media-raspberry-pie/master/rpi/docker-compose.yml" > docker-compose.yml
 sudo docker-compose up --detach
 
 
@@ -20,7 +20,7 @@ mkdir -p -m 1777 "logs"  # Logs will be stored here
 mkdir -p "tv"  # Directory to keep tv show files after being downloaded, scanned and transcoded
 mkdir -p "movies"  # Directory to keep movies files after being downloaded, scanned and transcoded
 
-curl "https://raw.githubusercontent.com/Denperidge/media-raspberry-pie/master/post-download.sh" > downloads/post-download.sh
+curl "https://raw.githubusercontent.com/Denperidge/media-raspberry-pie/master/rpi/post-download.sh" > downloads/post-download.sh
 chmod +x downloads/post-download.sh
 
 clear

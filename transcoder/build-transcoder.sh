@@ -20,9 +20,9 @@ cp .env $transcoder_path
 cd $transcoder_path
 
 # Fetch scripts
-curl "https://raw.githubusercontent.com/Denperidge/media-raspberry-pie/master/transcode.sh" > transcode.sh
-curl "https://raw.githubusercontent.com/Denperidge/media-raspberry-pie/master/process.py" > process.py
-curl "https://raw.githubusercontent.com/Denperidge/media-raspberry-pie/master/modify-ini.py" > modify-ini.py
+curl "https://raw.githubusercontent.com/Denperidge/media-raspberry-pie/master/transcoder/transcode.sh" > transcode.sh
+curl "https://raw.githubusercontent.com/Denperidge/media-raspberry-pie/master/transcoder/process.py" > process.py
+curl "https://raw.githubusercontent.com/Denperidge/media-raspberry-pie/master/transcoder/modify-ini.py" > modify-ini.py
 chmod +x transcode.sh
 
 # Create venv if need be
@@ -49,7 +49,7 @@ fi
 
 # For Windows, assist with automatic startup configuration
 if [ $os = "windows" ]; then  
-    curl "https://raw.githubusercontent.com/Denperidge/media-raspberry-pie/master/windows-task.bat" > scan-hourly-for-transcode.bat
+    curl "https://raw.githubusercontent.com/Denperidge/media-raspberry-pie/master/transcoder/windows-only/scan-hourly-for-transcode.bat" > scan-hourly-for-transcode.bat
     sed -i "s|%transcoder_path%|$transcoder_path|g" scan-hourly-for-transcode.bat
     echo "The transcoder path and your startup folder will now open in explorer"
     echo "Copy scan-hourly-for-transcode.bat from the transcoder folder to startup to allow windows to run it on startup"

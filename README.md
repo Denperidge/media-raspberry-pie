@@ -149,7 +149,7 @@ I'll cut straight to the point: for context behind what I do or why I do it, loo
 
   
 ```sh
-curl "https://raw.githubusercontent.com/Denperidge/media-raspberry-pie/master/build-raspberry.sh" > build-raspberry.sh && chmod +x build-raspberry.sh
+curl "https://raw.githubusercontent.com/Denperidge/media-raspberry-pie/master/rpi/build-raspberry.sh" > build-raspberry.sh && chmod +x build-raspberry.sh
 
-curl "https://raw.githubusercontent.com/Denperidge/media-raspberry-pie/master/build-transcoder.sh" > build-transcoder.sh && chmod +x build-transcoder.sh
+curl "https://raw.githubusercontent.com/Denperidge/media-raspberry-pie/master/transcoder/build-transcoder.sh" > build-transcoder.sh && chmod +x build-transcoder.sh
 ```
