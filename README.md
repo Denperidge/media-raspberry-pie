@@ -99,7 +99,7 @@ I'll cut straight to the point: for context behind what I do or why I do it, loo
 
 
 
-### Installation
+### Preparation
 - Download the .env.example and rename it to .env
 - Customize the .env file:
   - PUID = The ID of the user that you'd like to assign to the to-be-downloaded-files
@@ -116,40 +116,57 @@ I'll cut straight to the point: for context behind what I do or why I do it, loo
   - From the rpi: download & run build-raspberry.sh (from the same folder as the .env), and follow the instructions shown in it
 
 
-### Initial setup
-  - Configure Jackett: direct your browser of choice to ip:9117
-    - Press `Add indexer` and add your favourites
-    - Follow the instructions provided in Jackett for Sonarr and Radarr
-    - <details>
-        <summary>Config assistance whilst adding indexer in Sonarr/Radarr</summary>
-        
-        ----
-  
-        Name: personal preference, usually the name of the indexer
-  
-        ----
-        
-        Categories: check page 86 ([the predefined categories of Newznab](https://buildmedia.readthedocs.org/media/pdf/newznab/latest/newznab.pdf)) for which categories you need
-        - For TV shows on Sonarr, I personally use 5000,5030,5040
-        - For Movies on Radarr, I personally use 2000,2010,2020,2030,2035,2040,2045,2050,2060,5070
-        
-        ----
-
-        Anime categories: the same as before, along with anime categories 
-        
-        - For TV shows on Sonarr, I personally use 5000,5030,5040,5070
-        - For Movies on Radarr, I personally use 2000,2010,2020,2030,2035,2040,2045,2050,2060,5070
-        
-        ----  
-      </details>
-  - Configure Sonarr: direct your browser of choice to ip:8989
-    - Open Settings > Download Client > Add > qBittorrent (http://ip:8989/settings/indexers)
-  - Configure Plex: direct your browser of choice to ip:32400/web
-    - Configure movies and tv-shows to /movies and /tv respectively
-
-  
+### Initial setup (rpi)
+Execute the following command in the same folder as your .env is located on the rpi
 ```sh
 curl "https://raw.githubusercontent.com/Denperidge/media-raspberry-pie/master/rpi/build-raspberry.sh" > build-raspberry.sh && chmod +x build-raspberry.sh
+```
+run build-raspberry.sh and follow the instructions provided therein. Afterwards, follow the instructions beneath.
 
+
+**Configure Jackett: direct your browser of choice to ip:9117**
+  - Press `Add indexer` and add your favourites
+  - Follow the instructions provided in Jackett for Sonarr and Radarr
+  - <details>
+    <summary>Config assistance whilst adding indexer in Sonarr/Radarr</summary>
+    
+    ----
+  
+    Name: personal preference, usually the name of the indexer
+  
+    ----
+    
+    Categories: check page 86 ([the predefined categories of Newznab](https:buildmedia.readthedocs.org/media/pdf/newznab/latest/newznab.pdf)) for whiccategories you need
+    - For TV shows on Sonarr, I personally use 5000,5030,5040
+    - For Movies on Radarr, I personally use 2000,2010,2020,2030,2035,2040,2042050,2060,5070
+    
+    ----
+
+    Anime categories: the same as before, along with anime categories 
+    
+    - For TV shows on Sonarr, I personally use 5000,5030,5040,5070
+    - For Movies on Radarr, I personally use 2000,2010,2020,2030,2035,2040,2042050,2060,5070
+    
+    ----  
+  </details>
+
+**Configure Sonarr (and Radarr): direct your browser of choice to ip:8989 (and ip:7878)**
+  - Open Settings > Download Client > Add > qBittorrent (http://ip:8989/settings/indexers)
+  - In Settings > Download Client, disable Completed Download Handling
+  - 
+
+**Configure Plex: direct your browser of choice to ip:32400/web**
+    - Configure movies and tv-shows to /movies and /tv respectively
+
+
+### Initial setup (Transcoder)
+Execute the following command in the same folder as your .env is located on the rpi
+```sh
 curl "https://raw.githubusercontent.com/Denperidge/media-raspberry-pie/master/transcoder/build-transcoder.sh" > build-transcoder.sh && chmod +x build-transcoder.sh
 ```
+run build-transcoder.sh and follow the instructions provided therein
+
+
+### Finished
+
+And that's it! Let me know if you encounter any bugs or issues, and let me know how the experience goes. It's definitely an unconventional setup, and more of a fun thing to try
