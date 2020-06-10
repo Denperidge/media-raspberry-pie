@@ -53,6 +53,11 @@ if [ $os = "windows" ]; then
     sed -i "s|%transcoder_path%|$transcoder_path|g" scan-hourly-for-transcode.bat
     echo "The transcoder path and your startup folder will now open in explorer"
     echo "Copy scan-hourly-for-transcode.bat from the transcoder folder to startup to allow windows to run it on startup"
+    echo "Press ENTER to continue"
+    read
     explorer.exe "shell:startup"
     explorer.exe .
 fi
+
+echo "Press ENTER to finish."
+read
