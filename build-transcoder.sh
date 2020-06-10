@@ -13,21 +13,11 @@ mkdir -p mnt
 mkdir -p mnt/to-transcode
 mkdir -p mnt/transcoded
 
-curl "https://raw.githubusercontent.com/Denperidge/media-raspberry-pie/master/transcode.sh" > transcode.sh
-curl "https://raw.githubusercontent.com/Denperidge/media-raspberry-pie/master/process.py" > process.py
-chmod +x transcode.sh
-
 # Mount the samba share on each startup, following instructions from https://help.ubuntu.com/community/Samba/SambaClientGuide
 sudo apt-get -y install python3-pip samba-client cifs-utils gcc make git
 echo -e "\nusername=$smb_username" | sudo tee -a /etc/samba/user
 echo -e "password=$smb_password\n" | sudo tee -a /etc/samba/user
 sudo chmod 0400 /etc/samba/user
-
-echo -e "\n//$pie_ip/to-transcode  $transcoder_path/mnt/to-transcode  cifs  credentials=/etc/samba/user,noexec  0 0" | sudo tee -a /etc/fstab
-echo -e "//$pie_ip/transcoded  $transcoder_path/mnt/transcoded  cifs  credentials=/etc/samba/user,noexec  0 0\n" | sudo tee -a /etc/fstab
-
-sudo mount "$transcoder_path/mnt/to-transcode"
-sudo mount "$transcoder_path/mnt/transcoded"
 
 
 # Install homebrew using instructions from https://brew.sh/, and use brew to easily install ffmpeg
@@ -49,6 +39,21 @@ git clone https://github.com/mdhiggins/sickbeard_mp4_automator.git repo
 python3 -m venv m4avenv
 source m4avenv/bin/activate
 python3 -m pip install -r repo/setup/requirements.txt
+
+curl "https://raw.githubusercontent.com/Denperidge/media-raspberry-pie/master/transcode.sh" > transcode.sh
+curl "https://raw.githubusercontent.com/Denperidge/media-raspberry-pie/master/process.py" > process.py
+curl "https://raw.githubusercontent.com/Denperidge/media-raspberry-pie/master/mount-drvfs.sh" > mount-drvfs.sh
+chmod +x transcode.sh
+chmod +x mount-drvfs.sh
+sudo mount -t drvfs "//$pie_ip/to-transcode" "$transcoder_path/mnt/to-transcode/"
+sudo mount -t drvfs "//$pie_ip/transcoded" "$transcoder_path/mnt/transcoded/"
+
+echo "Crontab will now be opened. Copy and paste the following lines into it"
+echo "@reboot $transcoder_path/mount-drvfs.sh"
+echo "0 * * * * $transcoder_path/transcode.sh."
+echo "Press ENTER to continue"
+read
+sudo crontab -e
 
 
 exit
