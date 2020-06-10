@@ -48,10 +48,13 @@ chmod +x mount-drvfs.sh
 sudo mount -t drvfs "//$pie_ip/to-transcode" "$transcoder_path/mnt/to-transcode/"
 sudo mount -t drvfs "//$pie_ip/transcoded" "$transcoder_path/mnt/transcoded/"
 
+sed -i "s|%transcoder_path%|$transcoder_path|g" transcode.sh
+sed -i "s|%pie_ip%|$pie_ip|g" transcode.sh
+
 # NOTE: you can probably mount through fstab if you're not using Windows/WSL
 echo "Crontab will now be opened. Copy and paste the following lines into it"
 echo "@reboot $transcoder_path/mount-drvfs.sh"
-echo "0 * * * * $transcoder_path/transcode.sh."
+echo "0 * * * * $transcoder_path/transcode.sh"
 echo "Press ENTER to continue"
 read
 sudo crontab -e
