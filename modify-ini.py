@@ -8,8 +8,10 @@ from dotenv import load_dotenv
 from os import getenv
 load_dotenv()
 
+ini_path = "repo/config/autoProcess.ini"
+
 config = ConfigParser()
-config.read("repo/config/autoProcess.ini")
+config.read(ini_path)
 
 config["Converter"]["ffmpeg"] = "ffmpeg"
 config["Converter"]["ffprobe"] = "ffprobe"
@@ -44,3 +46,6 @@ config["Radarr"]["apikey"] = getenv("APIKEY_RADARR")
 # https://developers.google.com/cast/docs/media#chromecast_1st_and_2nd_gen
 if getenv("CHROMECAST_GEN_1_OR_2"):
     config["Video"]["max-level"] = "4.1"
+
+with open(ini_path, "w") as configfile:
+    config.write(configfile)
