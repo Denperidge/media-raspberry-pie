@@ -50,7 +50,7 @@ sed -i "s|%transcoder_path%|$transcoder_path|g" mount-drvfs.sh
 sed -i "s|%pie_ip%|$pie_ip|g" mount-drvfs.sh
 
 # Start cronjobs on startup
-if grep -q "sudo cron" ~/.bashrc; then
+if ! grep -q "sudo cron" ~/.bashrc; then
     echo -e "\n\nsudo cron" >> ~/.bashrc
 fi
 
@@ -64,8 +64,8 @@ read
 sudo crontab -e
 
 echo "Visudo will now be opened. Copy and paste the following lines into it"
-echo "$USER ALL = (root) NOPASSWD: /usr/sbin/cron"
-echo "$USER ALL = (root) NOPASSWD: /usr/bin/mount"
+echo "$USER ALL=(root) NOPASSWD: /usr/sbin/cron"
+echo "$USER ALL=(root) NOPASSWD: /usr/bin/mount"
 echo "Press ENTER to continue"
 read
 sudo visudo
