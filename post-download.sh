@@ -1,4 +1,4 @@
-clamscan -r "$1" > "/logs/$3-$2-($(date +"%d-%m-%Y--%H-%M-%S")).log"
+clamscan -r "$1" > "/logs/[$(date +"%d-%m-%Y--%H-%M-%S")]-clamscan-$3-$2.log"
 category="$(echo "$3" | tr "[:upper:]" "[:lower:]")"
 if [[ $category ==  *"radarr"* ]]; then
   mkdir -p "/scanned/radarr/$2/"

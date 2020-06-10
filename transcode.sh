@@ -5,12 +5,18 @@ smb="%transcoder_path%/mnt/"
 
 cd "$smb/to-transcode/sonarr/"
 for d in * ; do
-    python3 "%transcoder_path%/repo/manual.py" -i "$d" -m "$smb/transcoded/sonarr/$d/" --auto --preserverelative > "$smb/logs/transcode-process-sonarr-$d-$(date +'%d-%m-%Y--%H-%M-%S').log"
-    python3 "%transcoder_path%/process.py" "%transcoder_path%/repo/" "$d/" sonarr >> "$smb/logs/transcode-process-sonarr-$d-$(date +'%d-%m-%Y--%H-%M-%S').log"
+    logfile_transcode = "$smb/logs/[$(date +'%d-%m-%Y--%H-%M-%S')]-transcode-sonarr-$d.log"
+    logfile_process = "$smb/logs/[$(date +'%d-%m-%Y--%H-%M-%S')]-process-sonarr-$d.log"
+
+    python3 "%transcoder_path%/repo/manual.py" -i "$d" -m "$smb/transcoded/sonarr/$d/" --auto --preserverelative > logfile_transcode
+    python3 "%transcoder_path%/process.py" "%transcoder_path%/repo/" "$d/" sonarr > logfile_process
 done
 
 cd "$smb/to-transcode/radarr/"
 for d in * ; do
-    python3 "%transcoder_path%/repo/manual.py" -i "$d" -m "$smb/transcoded/radarr/$d/" --auto --preserverelative > "$smb/logs/transcode-process-radarr-$d-$(date +'%d-%m-%Y--%H-%M-%S').log"
-    python3 "%transcoder_path%/process.py" "%transcoder_path%/repo/" "$d/" radarr >> "$smb/logs/transcode-process-radarr-$d-$(date +'%d-%m-%Y--%H-%M-%S').log"
+    logfile_transcode = "$smb/logs/[$(date +'%d-%m-%Y--%H-%M-%S')]-transcode-radarr-$d.log"
+    logfile_process = "$smb/logs/[$(date +'%d-%m-%Y--%H-%M-%S')]-process-radarr-$d.log"
+
+    python3 "%transcoder_path%/repo/manual.py" -i "$d" -m "$smb/transcoded/radarr/$d/" --auto --preserverelative > logfile_transcode
+    python3 "%transcoder_path%/process.py" "%transcoder_path%/repo/" "$d/" radarr > logfile_process
 done
