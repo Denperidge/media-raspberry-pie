@@ -176,3 +176,7 @@ ___
 ### Finished
 
 And that's it! Let me know if you encounter any bugs or issues, and let me know how the experience goes. It's definitely an unconventional setup, and more of a fun thing to try
+
+## Known issues
+- If the transcoder gives an error that the ffmpeg binary couldn't be found, try modifying the ffmpeg & ffprobe value in TRANSCODER_PATH/repo/config/autoProcess.ini to ffmpeg.exe & ffprobe.exe, or perhaps even trying an absolute path
+- The scan-hourly-for-transcode.bat doesn't auto-hide itself (yet).
