@@ -1,6 +1,4 @@
-# apt-get update & upgrade before installing requirements
-sudo apt-get update
-sudo apt-get upgrade
+# Install requirements
 sudo apt-get -y install samba samba-common-bin
 
 # We will store all the files in the path configured in .env
