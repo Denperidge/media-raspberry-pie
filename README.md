@@ -128,6 +128,12 @@ curl "https://raw.githubusercontent.com/Denperidge/media-raspberry-pie/master/rp
 ```
 run build-raspberry.sh and follow the instructions provided therein. Afterwards, follow the instructions beneath.
 
+**Configure qBittorrent: direct your browser of choice to ip:8080**
+  - Open tools > options > downloads > Run external program on torrent completion
+  - Enable it and insert the following line:
+    `/bin/bash /downloads/post-download.sh "%R" "%N" "%L"`
+  - Press Save
+
 
 **Configure Jackett: direct your browser of choice to ip:9117**
   - Press `Add indexer` and add your favourites

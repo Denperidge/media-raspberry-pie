@@ -28,15 +28,6 @@ chmod +x downloads/post-download.sh
 curl "https://raw.githubusercontent.com/Denperidge/media-raspberry-pie/master/rpi/docker-compose.yml" > docker-compose.yml
 sudo docker-compose up --detach
 
-clear
-echo "Open qbittorrent (ip:8080) > tools > options > downloads > Run external program on torrent completion"
-echo "Enable it and insert the following line:"
-echo "/bin/bash /downloads/post-download.sh \"%R\" \"%N\" \"%L\""
-echo "and press Save"
-echo "Press ENTER to continue."
-
-read
-clear
 
 echo "downloads setup complete, now setup for transcoding!"
 echo "A samba share will now be set up, used by the transcoder to transcode"
