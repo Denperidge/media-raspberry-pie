@@ -192,3 +192,4 @@ And that's it! Let me know if you encounter any bugs or issues, and let me know 
 ## Known issues
 - If the transcoder gives an error that the ffmpeg binary couldn't be found, try modifying the ffmpeg & ffprobe value in TRANSCODER_PATH/repo/config/autoProcess.ini to ffmpeg.exe & ffprobe.exe, or perhaps even trying an absolute path
 - The scan-hourly-for-transcode.bat doesn't auto-hide itself (yet).
+- Automatic setup for qBittorrent was attempted, but the full conf file isn't instantly generated from startup. The risk of messing with a subject-to-change conf file will be larger than effort of pressing a few buttons during setup.

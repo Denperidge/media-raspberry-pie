@@ -28,12 +28,12 @@ chmod +x downloads/post-download.sh
 curl "https://raw.githubusercontent.com/Denperidge/media-raspberry-pie/master/rpi/docker-compose.yml" > docker-compose.yml
 sudo docker-compose up --detach
 
-python3 -m pip install python-dotenv
-# Add some necessary defaults to qbittorrent
-curl "https://raw.githubusercontent.com/Denperidge/media-raspberry-pie/master/rpi/setup-qbittorrent.py" > setup-qbittorrent.py
-python3 setup-qbittorrent.py
-
-sudo docker restart qbittorrent
+clear
+echo "Open qbittorrent (ip:8080) > tools > options > downloads > Run external program on torrent completion"
+echo "Enable it and insert the following line:"
+echo "/bin/bash /downloads/post-download.sh \"%R\" \"%N\" \"%L\""
+echo "and press Save"
+echo "Press ENTER to continue."
 
 read
 clear
