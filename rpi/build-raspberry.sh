@@ -5,6 +5,7 @@ sudo apt-get -y install samba samba-common-bin
 # Everything from config to the video files 
 media_path=$(cat .env | grep MEDIA_PATH= | cut -d '=' -f2)
 mkdir -p $media_path
+cp .env $media_path
 cd "$media_path"
 
 mkdir -p "downloads"  # Downloads: stored here after download in qbittorrent
