@@ -33,6 +33,8 @@ python3 -m pip install python-dotenv
 curl "https://raw.githubusercontent.com/Denperidge/media-raspberry-pie/master/rpi/setup-qbittorrent.py" > setup-qbittorrent.py
 python3 setup-qbittorrent.py
 
+sudo docker restart qbittorrent
+
 read
 clear
 
