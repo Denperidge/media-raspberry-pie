@@ -4,14 +4,14 @@ from dotenv import load_dotenv
 from os import getenv
 load_dotenv()
 
-conf_path = "config/qbittorrent/qBittorrent.conf"
+conf_path = "config/qbittorrent/qBittorrent/qBittorrent.conf"
 
 config = ConfigParser()
 config.read(conf_path)
 
 config["AutoRun"]["enabled"] = "true"
-config["AutoRun"]["program"] = '/bin/bash /downloads/post-download.sh \"%R\" \"%N\" \"%L\"'
-
+#config["AutoRun"]["program"] = '/bin/bash /downloads/post-download.sh \"%R\" \"%N\" \"%L\"'
+config["AutoRun"]["program"] = R"/bin/bash /downloads/post-download.sh \"%%R\" \"%%N\" \"%%L\""
 
 with open(conf_path, "w") as configfile:
     config.write(configfile)
