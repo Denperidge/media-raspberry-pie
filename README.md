@@ -158,10 +158,22 @@ run build-raspberry.sh and follow the instructions provided therein. Afterwards,
 **Configure Sonarr (and Radarr): direct your browser of choice to ip:8989 (and ip:7878)**
   - Open Settings > Download Client > Add > qBittorrent (http://ip:8989/settings/indexers)
   - In Settings > Download Client, disable Completed Download Handling
-  - 
+
+**Configure Bazarr: direct your browser of choice to ip:6767**
+  -  In General, nothing has to be changed! Cause we're using Docker; Bazarr, Sonarr and Radarr all use the same path mappings.
+  - Subtitles:
+    - Enable your favourite providers
+    - Select your favourite languages
+    - Enabled series & movies subtitles by default
+    - Note: be careful with enabling Hearing-Impaired, since when I used it at first it didn't download _any_ non-hearing-impaired subtitles. This could (have) change(d) with newer releases, however  
+  - Sonarr/Radarr:
+    - Enable Use Sonarr/Radarr
+    - Hostname or IP Address = PIE_IP
+    - Listening Port = PORT_SONARR/PORT_RADARR (or 8989/7878)
+    - API Key = APIKEY_SONARR/APIKEY_RADARR
 
 **Configure Plex: direct your browser of choice to ip:32400/web**
-    - Configure movies and tv-shows to /movies and /tv respectively
+  - Configure movies and tv-shows to /movies and /tv respectively
 
 
 ___
@@ -175,7 +187,7 @@ run build-transcoder.sh and follow the instructions provided therein
 ___
 ### Finished
 
-And that's it! Let me know if you encounter any bugs or issues, and let me know how the experience goes. It's definitely an unconventional setup, and more of a fun thing to try
+And that's it! Let me know if you encounter any bugs or issues, and let me know how the experience goes. It's definitely an unconventional setup, and more of a fun thing to try rather than an ideal situation
 
 ## Known issues
 - If the transcoder gives an error that the ffmpeg binary couldn't be found, try modifying the ffmpeg & ffprobe value in TRANSCODER_PATH/repo/config/autoProcess.ini to ffmpeg.exe & ffprobe.exe, or perhaps even trying an absolute path
