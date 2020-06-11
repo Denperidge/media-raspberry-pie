@@ -28,7 +28,7 @@ chmod +x downloads/post-download.sh
 curl "https://raw.githubusercontent.com/Denperidge/media-raspberry-pie/master/rpi/docker-compose.yml" > docker-compose.yml
 sudo docker-compose up --detach
 
-python3 -m pip install dotenv
+python3 -m pip install python-dotenv
 # Add some necessary defaults to qbittorrent
 curl "https://raw.githubusercontent.com/Denperidge/media-raspberry-pie/master/rpi/setup-qbittorrent.py" > setup-qbittorrent.py
 python3 setup-qbittorrent.py
