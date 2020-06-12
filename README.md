@@ -149,14 +149,14 @@ run build-raspberry.sh and follow the instructions provided therein. Afterwards,
     
     Categories: check page 86 ([the predefined categories of Newznab](https:buildmedia.readthedocs.org/media/pdf/newznab/latest/newznab.pdf)) for whiccategories you need
     - For TV shows on Sonarr, I personally use 5000,5030,5040
-    - For Movies on Radarr, I personally use 2000,2010,2020,2030,2035,2040,2042050,2060,5070
+    - For Movies on Radarr, I personally use 2000,2010,2020,2030,2035,2040,2045,2050,2060,5070
     
     ----
 
     Anime categories: the same as before, along with anime categories 
     
     - For TV shows on Sonarr, I personally use 5000,5030,5040,5070
-    - For Movies on Radarr, I personally use 2000,2010,2020,2030,2035,2040,2042050,2060,5070
+    - For Movies on Radarr, I personally use 2000,2010,2020,2030,2035,2040,2045,2050,2060,5070
     
     ----  
   </details>
@@ -177,6 +177,9 @@ run build-raspberry.sh and follow the instructions provided therein. Afterwards,
     - Hostname or IP Address = PIE_IP
     - Listening Port = PORT_SONARR/PORT_RADARR (or 8989/7878)
     - API Key = APIKEY_SONARR/APIKEY_RADARR
+  - After finishing initial setup, go to settings > General > Post-Processing
+    - Enable `Use Post-Processing`
+    - Post-processing command: `/bin/bash /downloads/post-download.sh "%R" "%N" "%L"`
 
 **Configure Plex: direct your browser of choice to ip:32400/web**
   - Configure movies and tv-shows to /movies and /tv respectively
