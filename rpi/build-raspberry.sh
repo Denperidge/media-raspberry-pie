@@ -10,6 +10,7 @@ cd "$media_path"
 
 mkdir -p "downloads"  # Downloads: stored here after download in qbittorrent
 mkdir -p "torrents"  #  Torrents: .torrent files are kept here
+mkdir -p "scripts"  # Where post-download scripts are kept
 mkdir -p -m 1777 "scanned"  #  Scanned: stored here after CLAMAV has scanned. Kept here until transcoder moves them
 mkdir -p -m 1777 "scanned/sonarr"
 mkdir -p -m 1777 "scanned/radarr"
@@ -23,6 +24,10 @@ mkdir -p "movies"  # Directory to keep movies files after being downloaded, scan
 # post-download moves downloads to the samba share
 curl "https://raw.githubusercontent.com/Denperidge/media-raspberry-pie/master/rpi/post-download.sh" > downloads/post-download.sh
 chmod +x downloads/post-download.sh
+
+# sync-subtitles syncs subtitles downloaded by bazarr
+curl "https://raw.githubusercontent.com/Denperidge/media-raspberry-pie/master/rpi/sync-subtitles.sh" > scripts/sync-subtitles.sh
+chmod +x scripts/sync-subtitles.sh
 
 # setup docker
 curl "https://raw.githubusercontent.com/Denperidge/media-raspberry-pie/master/rpi/docker-compose.yml" > docker-compose.yml

@@ -179,7 +179,7 @@ run build-raspberry.sh and follow the instructions provided therein. Afterwards,
     - API Key = APIKEY_SONARR/APIKEY_RADARR
   - After finishing initial setup, go to settings > General > Post-Processing
     - Enable `Use Post-Processing`
-    - Post-processing command: `/bin/bash /downloads/post-download.sh "%R" "%N" "%L"`
+    - Post-processing command: `/bin/bash /downloads/sync-subtitles.sh "{{episode}}" "{{subtitles}}" "{{episode_name}}" "{{subtitles_language_code2}}"`
 
 **Configure Plex: direct your browser of choice to ip:32400/web**
   - Configure movies and tv-shows to /movies and /tv respectively
@@ -200,5 +200,6 @@ And that's it! Let me know if you encounter any bugs or issues, and let me know 
 
 ## Known issues
 - If the transcoder gives an error that the ffmpeg binary couldn't be found, try modifying the ffmpeg & ffprobe value in TRANSCODER_PATH/repo/config/autoProcess.ini to ffmpeg.exe & ffprobe.exe, or perhaps even trying an absolute path
+- Sometimes, transcode.sh seems to error during the MOOV process, or just skips files. Moving the files into a different folder within to-transcode/{service}/ seems to help though!
 - The scan-hourly-for-transcode.bat doesn't auto-hide itself (yet).
 - Automatic setup for qBittorrent was attempted, but the full conf file isn't instantly generated from startup. The risk of messing with a subject-to-change conf file will be larger than effort of pressing a few buttons during setup.
