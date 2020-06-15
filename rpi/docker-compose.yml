@@ -89,7 +89,7 @@ services:
     ports:
       - ${PORT_BAZARR}:6767
     restart: unless-stopped
-    command: ["/bin/bash", "-c", "apk add automake gcc g++ subversion python3-dev python3 > /logs/[$$(date +'%d-%m-%Y--%H-%M-%S')]-bazarr-apk-add.log && python3 -m pip install setuptools wheel numpy ffsubsync > /logs/[$$(date +'%d-%m-%Y--%H-%M-%S')]-bazarr-pip-install-ffsubsync.log && /init"]
+    command: ["/bin/bash", "-c", "apk add automake gcc g++ subversion python3-dev python3 > /logs/[$$(date +'%d-%m-%Y--%H-%M-%S')]-bazarr-apk-add.log && /usr/bin/yes | python3 -m pip install setuptools wheel numpy ffsubsync > /logs/[$$(date +'%d-%m-%Y--%H-%M-%S')]-bazarr-pip-install-ffsubsync.log && /init"]
   
   plex:
     image: linuxserver/plex
