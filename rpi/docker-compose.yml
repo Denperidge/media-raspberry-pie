@@ -13,6 +13,7 @@ services:
       - ${MEDIA_PATH}/config/qbittorrent:/config
       - ${MEDIA_PATH}/downloads:/downloads
       - ${MEDIA_PATH}/scanned:/scanned
+      - ${MEDIA_PATH}/scripts:/scripts
       - ${MEDIA_PATH}/torrents:/torrents
       - ${MEDIA_PATH}/logs:/logs
     ports:

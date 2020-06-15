@@ -23,7 +23,7 @@ mkdir -p "movies"  # Directory to keep movies files after being downloaded, scan
 
 # post-download moves downloads to the samba share
 curl "https://raw.githubusercontent.com/Denperidge/media-raspberry-pie/master/rpi/post-download.sh" > downloads/post-download.sh
-chmod +x downloads/post-download.sh
+chmod +x scripts/post-download.sh
 
 # sync-subtitles syncs subtitles downloaded by bazarr
 curl "https://raw.githubusercontent.com/Denperidge/media-raspberry-pie/master/rpi/sync-subtitles.sh" > scripts/sync-subtitles.sh
