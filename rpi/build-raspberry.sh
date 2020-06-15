@@ -22,7 +22,7 @@ mkdir -p "tv"  # Directory to keep tv show files after being downloaded, scanned
 mkdir -p "movies"  # Directory to keep movies files after being downloaded, scanned and transcoded
 
 # post-download moves downloads to the samba share
-curl "https://raw.githubusercontent.com/Denperidge/media-raspberry-pie/master/rpi/post-download.sh" > downloads/post-download.sh
+curl "https://raw.githubusercontent.com/Denperidge/media-raspberry-pie/master/rpi/post-download.sh" > scripts/post-download.sh
 chmod +x scripts/post-download.sh
 
 # sync-subtitles syncs subtitles downloaded by bazarr
