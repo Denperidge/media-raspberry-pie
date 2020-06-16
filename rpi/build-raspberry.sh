@@ -14,6 +14,7 @@ mkdir -p "scripts"  # Where post-download scripts are kept
 mkdir -p -m 1777 "scanned"  #  Scanned: stored here after CLAMAV has scanned. Kept here until transcoder moves them
 mkdir -p -m 1777 "scanned/sonarr"
 mkdir -p -m 1777 "scanned/radarr"
+mkdir -p -m 1777 "scanned/other"
 mkdir -p -m 1777 "transcoded"  # After transcoder is finished, files are moved here and kept there until imported back to Sonarr/Radarr
 mkdir -p -m 1777 "transcoded/sonarr"
 mkdir -p -m 1777 "transcoded/radarr"

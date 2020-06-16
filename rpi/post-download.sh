@@ -26,4 +26,17 @@ elif [[ $category ==  *"sonarr"* ]]; then
     mv "$1" "/scanned/sonarr/$2/$2"
   fi
 
+else 
+
+  # If path is directory
+  if [[ -d $1 ]]; then
+    # Move the directory
+    mv "$1" "/scanned/other/$2"
+  # If path is a file
+  else
+    # Create a new folder to store it in
+    mkdir -p "/scanned/other/$2/"
+    mv "$1" "/scanned/other/$2/$2"
+  fi
+
 fi
