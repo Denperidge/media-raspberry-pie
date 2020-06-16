@@ -179,7 +179,7 @@ run build-raspberry.sh and follow the instructions provided therein. Afterwards,
     - API Key = APIKEY_SONARR/APIKEY_RADARR
   - After finishing initial setup, go to settings > General > Post-Processing
     - Enable `Use Post-Processing`
-    - Post-processing command: `/bin/bash /scripts/sync-subtitles.sh "{{episode}}" "{{subtitles}}" "{{episode_name}}" "{{subtitles_language_code2}}"`
+    - Post-processing command: `/scripts/sync-subtitles.sh "{{episode}}" "{{subtitles}}" "{{directory}}" "{{episode_name}}" {{subtitles_language_code2}}`
 
 **Configure Plex: direct your browser of choice to ip:32400/web**
   - Configure movies and tv-shows to /movies and /tv respectively
