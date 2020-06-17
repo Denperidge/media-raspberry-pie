@@ -30,8 +30,17 @@ chmod +x scripts/post-download.sh
 curl "https://raw.githubusercontent.com/Denperidge/media-raspberry-pie/master/rpi/sync-subtitles.sh" > scripts/sync-subtitles.sh
 chmod +x scripts/sync-subtitles.sh
 
-# setup docker
-curl "https://raw.githubusercontent.com/Denperidge/media-raspberry-pie/master/rpi/docker-compose.yml" > docker-compose.yml
+# fetch docker-compose.yml if it doesn't already exist
+if [ ! -f docker-compose.yml ]; then
+    echo "No docker-compose file found, downloading newest version..."
+    curl "https://raw.githubusercontent.com/Denperidge/media-raspberry-pie/master/rpi/docker-compose.yml" > docker-compose.yml
+
+else
+    echo "Existing docker-compose file found. It will not be replaced to ensure that any changes (mainly mounts) are kept."
+    echo "However, if you want to fully recreate your setup, simply hit CTRL+C and manually remove the docker-compose.yml in your $media_path"
+    echo "Press ENTER to continue (without recreating your docker setup)"
+    read
+fi
 sudo docker-compose up --detach
 
 
