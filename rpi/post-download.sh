@@ -40,3 +40,7 @@ else
   fi
 
 fi
+
+# Clear out empty dirs from sonarr & radarr
+rmdir "/scanned/sonarr/*"
+rmdir "/scanned/radarr/*"
