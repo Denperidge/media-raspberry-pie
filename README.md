@@ -199,6 +199,26 @@ ___
 
 And that's it! Let me know if you encounter any bugs or issues, and let me know how the experience goes. It's definitely an unconventional setup, and more of a fun thing to try rather than an ideal situation
 
+## Adding more storage space
+After mounting more storage space on your rpi (you can refer to [this tutorial](https://www.digitalocean.com/community/tutorials/how-to-partition-and-format-storage-devices-in-linux) in case you're unfamiliar with that process), you still have to mount the hard drives in Sonarr, Radarr, Bazarr and Plex.
+Start with making making directories to store tv shows and movies. Be sure that read/write over there is available for the PUID/GUID you used in  
+Navigate to $media_path, and modify your docker-compose.yml. Under Sonarr, Radarr, Bazarr and Plex's `volumes:` entries, add:
+  - (Sonarr): `- /mnt/yourhdd/path/for/tv/shows:/tv2`
+  - (Radarr): `- /mnt/yourhdd/path/for/movies:/movies2`
+  - (Bazarr and Plex): 
+    - `- /mnt/yourhdd/path/for/tv/shows:/tv2`
+    - `- /mnt/yourhdd/path/for/movies:/movies2`
+
+(note: you can change tv2/movies2 to anything you want, as long as it's clear for you and **consistent across your entries**)
+
+Afterwards, running `sudo docker-compose up` should do the trick to mount your new drive.
+If it errors, you can recreate your containers using `sudo docker stop sonarr radarr bazarr plex && sudo docker rm sonarr radarr bazarr plex && sudo docker-compose up`(your config *should* be safe, considering it's stored in $media_path/config, but nevertheless refrain from this unless necessary).
+
+In Sonarr/Radarr, you can now add the new path when adding a series. This only has to be done once, and then you can select between your drives at will.
+In Plex, open Settings > Libraries > Add Library and add the new paths.
+In Bazarr, no additional configuration is needed.
+
+
 ## Known issues
 - If the transcoder gives an error that the ffmpeg binary couldn't be found, try modifying the ffmpeg & ffprobe value in TRANSCODER_PATH/repo/config/autoProcess.ini to ffmpeg.exe & ffprobe.exe, or perhaps even trying an absolute path
 - Sometimes, transcode.sh seems to error during the MOOV process, or just skips files. Moving the files into a different folder within to-transcode/{service}/ seems to help though!
