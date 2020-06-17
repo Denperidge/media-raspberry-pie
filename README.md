@@ -217,7 +217,7 @@ Afterwards, running `sudo docker-compose up` should do the trick to mount your n
 If it errors, you can recreate your containers using `sudo docker stop sonarr radarr bazarr plex && sudo docker rm sonarr radarr bazarr plex && sudo docker-compose up`(your config *should* be safe, considering it's stored in $media_path/config, but nevertheless refrain from this unless necessary).
 
 In Sonarr/Radarr, you can now add the new path when adding a series. This only has to be done once, and then you can select between your drives at will.
-In Plex, open Settings > Libraries > Add Library and add the new paths.
+In Plex, open Settings > Libraries > TV programmes/Films > Edit > Add Folders and add the new paths.
 In Bazarr, no additional configuration is needed.
 
 
