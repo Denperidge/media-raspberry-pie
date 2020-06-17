@@ -1,17 +1,19 @@
-# Media Raspberry Pie
+# Media Raspberry Pi
 
-Can you use a Raspberry Pie to download and stream your media? Yes. Should you? No idea.
+Can you use a Raspberry Pi to download and stream your media? Yes. Should you? No idea.
 
 I wanted to see if I could make the following process to be set up in no more than a few minutes:
 - Allow Sonarr & Radarr to send download requests to Qbittorrent
 - Let qbittorrent download the files and let them be scanned for viruses
-- Let the files be transcoded by an *external computer* into MP4 H.264, so that all the media is uniform *and* the Raspberry Pie doesn't need to transcode later on (since more obscure encodings in Plex sometimes require on-the-fly transcoding)
+- Let the files be transcoded by an *external computer* into MP4 H.264, so that all the media is uniform *and* the Raspberry Pi doesn't need to transcode later on (since more obscure encodings in Plex sometimes require on-the-fly transcoding)
 - Automatically download subtitles using Bazarr
 - Automatically sync subtitles using ffsubsync
 - Allow the media to be streamed through Plex
 
+A delicious mix for ultimate convenience. A tasty media pie, if you will.
+
 **Why use this setup if you need an external computer?**
-You *could* build a dedicated machine for your media, but that'll cost you quite a few hundred bucks. The Raspberry Pie doesn't need anything but a small purchase and some storage. And most of use a computer besides the Raspberry Pie either way, so that that computer can handle the transcoding.
+You *could* build a dedicated machine for your media, but that'll cost you quite a few hundred bucks. The Media Raspberry Pie doesn't need anything but a small purchase and some storage. And most of use a computer besides the Raspberry Pi either way, so that that computer can handle the transcoding.
 
 ## Disclaimers
 
