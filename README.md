@@ -205,13 +205,13 @@ And that's it! Let me know if you encounter any bugs or issues, and let me know 
 After mounting more storage space on your rpi (you can refer to [this tutorial](https://www.digitalocean.com/community/tutorials/how-to-partition-and-format-storage-devices-in-linux) in case you're unfamiliar with that process), you still have to mount the hard drives in Sonarr, Radarr, Bazarr and Plex.
 Start with making making directories to store tv shows and movies. Be sure that read/write over there is available for the PUID/GUID you used in  
 Navigate to $media_path, and modify your docker-compose.yml. Under Sonarr, Radarr, Bazarr and Plex's `volumes:` entries, add:
-  - (Sonarr): `- /mnt/yourhdd/path/for/tv/shows:/tv2`
-  - (Radarr): `- /mnt/yourhdd/path/for/movies:/movies2`
+  - (Sonarr): `- /mnt/yourhdd/path/for/tv/shows:/tv-secondhdd`
+  - (Radarr): `- /mnt/yourhdd/path/for/movies:/movies-secondhdd`
   - (Bazarr and Plex): 
-    - `- /mnt/yourhdd/path/for/tv/shows:/tv2`
-    - `- /mnt/yourhdd/path/for/movies:/movies2`
+    - `- /mnt/yourhdd/path/for/tv/shows:/tv-secondhdd`
+    - `- /mnt/yourhdd/path/for/movies:/movies-secondhdd`
 
-(note: you can change tv2/movies2 to anything you want, as long as it's clear for you and **consistent across your entries**)
+(note: you can change tv-secondhdd/movies-secondhdd to anything you want, as long as it's clear for you and **consistent across your entries**)
 
 Afterwards, running `sudo docker-compose up` should do the trick to mount your new drive.
 If it errors, you can recreate your containers using `sudo docker stop sonarr radarr bazarr plex && sudo docker rm sonarr radarr bazarr plex && sudo docker-compose up`(your config *should* be safe, considering it's stored in $media_path/config, but nevertheless refrain from this unless necessary).
