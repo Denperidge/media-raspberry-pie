@@ -220,9 +220,10 @@ In Sonarr/Radarr, you can now add the new path when adding a series. This only h
 In Plex, open Settings > Libraries > TV programmes/Films > Edit > Add Folders and add the new paths.
 In Bazarr, no additional configuration is needed.
 
-
-## Known issues
+## Troubleshooting
 - If the transcoder gives an error that the ffmpeg binary couldn't be found, try modifying the ffmpeg & ffprobe value in TRANSCODER_PATH/repo/config/autoProcess.ini to ffmpeg.exe & ffprobe.exe, or perhaps even trying an absolute path
 - Sometimes, transcode.sh seems to error during the MOOV process, or just skips files. Moving the files into a different folder within to-transcode/{service}/ seems to help though!
+
+## Known issues
 - The scan-hourly-for-transcode.bat doesn't auto-hide itself (yet).
 - Automatic setup for qBittorrent was attempted, but the full conf file isn't instantly generated from startup. The risk of messing with a subject-to-change conf file will be larger than effort of pressing a few buttons during setup.
