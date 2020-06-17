@@ -18,8 +18,6 @@ var indexers = [
 var timeout = 1500;
 
 // That's all the configuration done! The code below will handle the rest.
-// First *always check out what the code does*, I don't have any ill intentions but it's a good habit
-// And then, just copy and paste all this into the console in your sonarr/radarr
 
 var categories; var animeCategories; var apikey;
 
