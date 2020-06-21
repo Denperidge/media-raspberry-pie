@@ -97,7 +97,13 @@ function EpisodesSecondForm(files, index) {
     var episodes = $(".episode-number-cell.sortable.renderable");
     for (var i = 0; i < episodes.length; i++) {
         var episode = episodes[i];
-        var episodeIndex = parseInt(episode.innerText);
+        
+        var episodeRawIndex = episode.innerText;
+        if (episodeRawIndex.indexOf("(") > -1) {
+            episodeRawIndex = episodeRawIndex.split("(")[0].trim()
+        }
+        
+        var episodeIndex = parseInt(episodeRawIndex);
 
         if (episodeIndex == index) {
             episode.click();
