@@ -131,9 +131,13 @@ curl "https://raw.githubusercontent.com/Denperidge/media-raspberry-pie/master/rp
 run build-raspberry.sh and follow the instructions provided therein. Afterwards, follow the instructions beneath.
 
 **Configure qBittorrent: direct your browser of choice to ip:8080**
+  - Open tools > options > downloads
   - Open tools > options > downloads > Run external program on torrent completion
   - Enable it and insert the following line:
     `/bin/bash /downloads/post-download.sh "%R" "%N" "%L"`
+  - (Optional) To enable the saving of .torrent files (in case you want to not look for the download again), do either of the following:
+    - Enable & set `Copy .torrent files to:` to `/torrents`
+    - Enable & set `Copy .torrent files for finished downloads to:` to `/torrents`
   - Press Save
 
 

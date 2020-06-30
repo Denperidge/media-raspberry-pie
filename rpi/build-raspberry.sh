@@ -70,6 +70,14 @@ echo "   Browseable = yes"
 echo "   Writeable = Yes"
 echo "   only guest = no"
 echo "   Public = yes"
+echo
+echo "[torrents]"
+echo "   Comment = Folder to allow the transcoder to access saved .torrent files (if configured)"
+echo "   Path = $media_path/torrents"
+echo "   Browseable = yes"
+echo "   Writeable = Yes"
+echo "   only guest = no"
+echo "   Public = yes"
 read
 sudo nano /etc/samba/smb.conf
 
