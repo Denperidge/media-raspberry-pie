@@ -52,6 +52,8 @@ You *could* build a dedicated machine for your media, but that'll cost you quite
 You'll need:
 - A Raspberry Pi -> this will download, store and stream your media
 - A computer with a good CPU, any OS -> this will transcode the media to lighten the load on the Raspberry Pi
+- Probably an external hard drive of some sort to store the media on
+  - I **cannot** stress this enough: if the external hdd gets power from USB, there's a good chance that the Raspberry Pi does NOT give enough power. Get yourself a Linux-compatible Powered USB Hub! 
 
 The instructions will refer to:
 - The Raspberry Pi as **(media)-rpi**
