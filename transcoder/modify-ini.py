@@ -24,6 +24,8 @@ config["Video"]["pix-fmt"] = "YUV420P"
 config["Audio"]["codec"] = "aac"
 config["Universal Audio"]["codec"] = "aac"
 
+config["Subtitle"]["codec-image-based"] = "dvdsub"
+config["Subtitle"]["embed-image-subs"] = "True"
 
 config["Sonarr"]["host"] = getenv("PIE_IP")
 config["Radarr"]["host"] = getenv("PIE_IP")
