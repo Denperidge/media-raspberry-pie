@@ -65,7 +65,6 @@ services:
       - PUID=${PUID}
       - PGID=${PGID}
       - TZ=${TZ}
-      - RUN_OPTS=chttpclient2netcore
     volumes:
       - ${MEDIA_PATH}/config/jackett:/config
       - ${MEDIA_PATH}/downloads:/downloads
