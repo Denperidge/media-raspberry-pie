@@ -22,7 +22,7 @@ services:
       - ${PORT_QBITTORRENT}:${PORT_QBITTORRENT}
     restart: unless-stopped
     # Escape $ with $
-    command: ["/bin/bash", "-c", "apt-get update && apt-get install -y clamav >> /logs/$$(date +'%d-%m-%Y').log && freshclam >> /logs/$$(date +'%d-%m-%Y').log && /init"]
+    command: ["/bin/bash", "-c", "apt-get update && apt-get install -y clamav >> /logs/$$(date +'%d-%m-%Y').log && freshclam >> /logs/$$(date +'%d-%m-%Y').log && sudo chmod 777 /logs/$$(date +'%d-%m-%Y').log && /init"]
 
   sonarr:
     image: linuxserver/sonarr
