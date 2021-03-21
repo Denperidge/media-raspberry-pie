@@ -1,4 +1,4 @@
-clamscan -r "$1" > "/logs/[$(date +"%d-%m-%Y--%H-%M-%S")]-clamscan-$3-$2.log"
+clamscan -r "$1" >> "/logs/$(date +"%d-%m-%Y").log"
 category="$(echo "$3" | tr "[:upper:]" "[:lower:]")"
 if [[ $category ==  *"radarr"* ]]; then
 
@@ -41,10 +41,6 @@ else
 
 fi
 
-# Clear out empty dirs from sonarr & radarr
-rmdir "/scanned/sonarr/*/*/*"
-rmdir "/scanned/sonarr/*/*"
-rmdir "/scanned/sonarr/*"
-rmdir "/scanned/radarr/*/*/*"
-rmdir "/scanned/radarr/*/*"
-rmdir "/scanned/radarr/*"
+# Clear out empty dirs from sonarr & radarr (solution found at https://unix.stackexchange.com/a/46326/182203)
+find /downloads/ -type d -empty -delete
+find /scanned/ -type d -empty -delete
