@@ -118,7 +118,20 @@ function EpisodesSecondForm(files, index) {
     }, timeout);
 }
 
+function Assign(name, index) {
+    Series(name);
+    setTimeout(function() {
+        Season(index);
+        setTimeout(function() {
+            Episodes();
+        }, timeout);
+    }, timeout);
+}
+
 // Example usage:
 // Series("kids next door");
 // Season(1)
 // Episodes();
+// Or
+// Assign("kids next door", 1)
+// To combine all of the above into one line
