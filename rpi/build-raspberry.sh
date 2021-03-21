@@ -52,32 +52,28 @@ echo "   Comment = Folder to allow transcoder to reach files that have to be tra
 echo "   Path = $media_path/scanned"
 echo "   Browseable = yes"
 echo "   Writeable = Yes"
-echo "   only guest = no"
-echo "   Public = yes"
+echo "   Public = no"
 echo
 echo "[transcoded]"
 echo "   Comment = Folder where the transcoder will put transcoded files"
 echo "   Path = $media_path/transcoded"
 echo "   Browseable = yes"
 echo "   Writeable = Yes"
-echo "   only guest = no"
-echo "   Public = yes"
+echo "   Public = no"
 echo
 echo "[logs]"
 echo "   Comment = Folder to allow transcoder to read logs if need be"
 echo "   Path = $media_path/logs"
 echo "   Browseable = yes"
 echo "   Writeable = Yes"
-echo "   only guest = no"
-echo "   Public = yes"
+echo "   Public = no"
 echo
 echo "[torrents]"
 echo "   Comment = Folder to allow the transcoder to access saved .torrent files (if configured)"
 echo "   Path = $media_path/torrents"
 echo "   Browseable = yes"
 echo "   Writeable = Yes"
-echo "   only guest = no"
-echo "   Public = yes"
+echo "   Public = no"
 read
 sudo nano /etc/samba/smb.conf
 
