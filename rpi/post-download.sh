@@ -41,6 +41,10 @@ else
 
 fi
 
-# Clear out empty dirs from sonarr & radarr (solution found at https://unix.stackexchange.com/a/46326/182203)
-find /downloads/ -type d -empty -delete
-find /scanned/ -type d -empty -delete
+# Clear out empty dirs from downloads, sonarr, radarr and other (solution found at https://unix.stackexchange.com/a/46326/182203)
+find /downloads/* -type d -empty -delete
+find /scanned/sonarr/* -type d -empty -delete
+find /scanned/radarr/* -type d -empty -delete
+find /scanned/other/* -type d -empty -delete
+# Don't use find /scanned/ - type d etc --> this might delete the sonarr and radarr folders too
+# This is also still the case if you use /scanned/sonarr/, without the asterisk
