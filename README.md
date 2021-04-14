@@ -94,7 +94,7 @@ ___
   <summary>"My transcoder will run on a Linux machine"</summary>
 
   - [Python 3](https://www.python.org/downloads/)
-    - If not handled by your distros python3 install, be sure that python3-pip is also installed
+    - If not handled by your distros python3 install, be sure that python3-pip and python3-venv are also installed
   - [FFMPEG](https://ffmpeg.org/download.html)
   - Git
   - (All of the above have to be added to path!)
@@ -106,7 +106,7 @@ ___
 
 ___
 
-### Preparation
+### Preparation (and inital setup for transcoder)
 
 - Download the .env.example and rename it to .env
 - Customize the .env file:
