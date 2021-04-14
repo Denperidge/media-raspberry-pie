@@ -26,7 +26,7 @@ else
     pie_path=$(cat .env | grep PIE_PATH= | cut -d '=' -f2)
 fi
 
-logfile="//$pie_ip/logs/$(date +'%d-%m-%Y').log"
+logfile="$pie_path/logs/$(date +'%d-%m-%Y').log"
 
 # Process tv shows
 cd "$pie_path/to-transcode/sonarr/"
