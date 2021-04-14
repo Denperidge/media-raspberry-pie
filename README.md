@@ -229,6 +229,7 @@ In Bazarr, no additional configuration is needed.
 ## Troubleshooting
 - If the transcoder gives an error that the ffmpeg binary couldn't be found, try modifying the ffmpeg & ffprobe value in TRANSCODER_PATH/repo/config/autoProcess.ini to ffmpeg.exe & ffprobe.exe, or perhaps even trying an absolute path
 - Sometimes, transcode.sh seems to error during the MOOV process, or just skips files. Moving the files into a different folder within to-transcode/{service}/ seems to help though!
+- For mounting on ubuntu, I've used thus command: sudo mount -t cifs -o username=MEDIAUSERNAME,uid=TRANSCODERUID,gid=TRANSCODERGID //$PIE_IP/logs $TRANSCODER_PATH/logs
 
 ## Known issues
 - The scan-hourly-for-transcode.bat doesn't auto-hide itself (yet).
