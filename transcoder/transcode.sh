@@ -14,7 +14,7 @@ fi
 
 # Go to working directory of transcode.sh
 # One-liner from https://stackoverflow.com/a/246128
-cd "$( cd "$( dirname "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )"
+transcoder_path="$( cd "$( dirname "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )"
 
 # Get environment variables & go to transcoder
 pie_ip=$(cat .env | grep PIE_IP= | cut -d '=' -f2)
@@ -25,7 +25,7 @@ if [ $os = "windows" ]; then
     pie_path="//$pie_ip/"
 else 
     source "$transcoder_path/m4avenv/bin/activate"
-    pie_path=$(cat .env | grep PIE_PATH= | cut -d '=' -f2)
+    pie_path=$(cat $transcoder_path/.env | grep PIE_PATH= | cut -d '=' -f2)
 fi
 
 logfile="$pie_path/logs/$(date +'%d-%m-%Y').log"
