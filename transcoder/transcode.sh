@@ -12,12 +12,14 @@ else
     python="python3"
 fi
 
-# Get environment variables & go to transcoder
-transcoder_path=$(cat .env | grep TRANSCODER_PATH= | cut -d '=' -f2)
-pie_ip=$(cat .env | grep PIE_IP= | cut -d '=' -f2)
-cd "$transcoder_path"
+# Go to working directory of transcode.sh
+# One-liner from https://stackoverflow.com/a/246128
+cd "$( cd "$( dirname "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )"
 
-# Activate venv and set pie path for windows
+# Get environment variables & go to transcoder
+pie_ip=$(cat .env | grep PIE_IP= | cut -d '=' -f2)
+
+# Activate venv and set pie path (the path will be different for Windows and Linux transcoder)
 if [ $os = "windows" ]; then  
     source "$transcoder_path/m4avenv/Scripts/activate"
     pie_path="//$pie_ip/"

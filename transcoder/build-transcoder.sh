@@ -1,23 +1,45 @@
-transcoder_path=$(cat .env | grep TRANSCODER_PATH= | cut -d '=' -f2)
-pie_ip=$(cat .env | grep PIE_IP= | cut -d '=' -f2)
+#!/bin/bash
+
+set -e
 
 # Assume windows if not Linux.
-# The script would need presumably modifications to run on Mac, yet I do not have a machine to test this on
-if [  $(uname -s) = "Darwin" ]; then
+# The script would presumably need modifications to run on Mac, but I do not have a machine to test this on
+if [ "$(uname -s)" = "Darwin" ] ; then
     echo "This script isn't meant to natively run on Mac, since I cannot test it on there"
     echo "Please modify the script to make sure that mac compatibility works"
     exit 1
-elif [ $(uname -s) != "Linux" ]; then  
+elif [ "$(uname -s)" != "Linux" ] ; then
     os="windows"
     python="py -3"
+    sudo=""  # Sudo can't be used under git bash
+    transcoder_path="C:/mrpi-transcoder/"
 else
     os="linux"
     python="python3"
+    sudo="sudo "
+    transcoder_path="/usr/local/bin/mrpi-transcoder/"
 fi
 
-mkdir -p $transcoder_path
-cp .env $transcoder_path
-cd $transcoder_path
+$sudo mkdir -p $transcoder_path
+username=$(whoami)
+$sudo chown $username $transcoder_path
+cd $transcoder_path || exit 1  # Exit on fail
+
+# Setup .env
+# setup_env(prompt, key, default_value)
+function setup_env {
+    read -p "$1 [$3]: " env_value
+    env_value="${env_value:-$3}"
+    echo "$2=$env_value" >> .env
+}
+
+setup_env "Sonarr port" PORT_SONARR 8989
+setup_env "Radarr port" PORT_RADARR 7878
+setup_env "Sonarr API key" APIKEY_SONARR
+setup_env "Radarr API key" APIKEY_RADARR
+setup_env "IP Address of RPI" PIE_IP
+setup_env "Path to RPI Share" PIE_PATH
+
 
 # Fetch scripts
 curl "https://raw.githubusercontent.com/Denperidge/media-raspberry-pie/master/transcoder/transcode.sh" > transcode.sh
@@ -27,8 +49,8 @@ chmod +x transcode.sh
 
 # Create venv if need be
 if ! [ -d "m4avenv" ]; then
-    python3 -m pip install venv
-    python3 -m venv m4avenv
+    $python -m pip install venv || $python -m pip install virtualenv || $sudo apt-get install python3-venv
+    $python -m venv m4avenv
 fi
 
 # Activate venv
@@ -47,7 +69,8 @@ if ! [ -d "repo" ]; then
     $python "modify-ini.py"
 fi
 
-# For Windows, assist with automatic startup configuration
+# Let transcoder work automatically
+# Windows,
 if [ $os = "windows" ]; then  
     curl "https://raw.githubusercontent.com/Denperidge/media-raspberry-pie/master/transcoder/windows-only/scan-hourly-for-transcode.bat" > scan-hourly-for-transcode.bat
     sed -i "s|%transcoder_path%|$transcoder_path|g" scan-hourly-for-transcode.bat
@@ -57,6 +80,8 @@ if [ $os = "windows" ]; then
     read
     explorer.exe "shell:startup"
     explorer.exe .
+else
+    $sudo sh -c 'echo "\n0 *\t* * * $username $transcoder_path/transcode.sh" >> /etc/crontab'
 fi
 
 echo "Press ENTER to finish."
