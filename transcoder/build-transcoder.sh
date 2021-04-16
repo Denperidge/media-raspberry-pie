@@ -28,14 +28,18 @@ cd $transcoder_path || exit 1  # Exit on fail
 # Setup .env
 # setup_env(prompt, key, default_value, outputfile)
 function setup_env {
-    read -p "$1 [$3]: " env_value
-    env_value="${env_value:-$3}"
     if [ ! "$4" ]; then  # If outputfule isn't set, default to env
         outputfile=".env"
     else
         outputfile="$4"
     fi
-    echo "$2=$env_value" >> $outputfile
+
+    # Only add to env if key isn't already set
+    if ! grep -q "$2" "$outputfile"; then
+        read -p "$1 [$3]: " env_value
+        env_value="${env_value:-$3}"
+        echo "$2=$env_value" >> $outputfile
+    fi   
 }
 
 setup_env "Sonarr port" PORT_SONARR 8989
@@ -63,17 +67,22 @@ else
     to_transcode="$mount_path/to-transcode"
     transcoded="$mount_path/transcoded"
     logs="$mount_path/logs"
-    mkdir $to_transcode
-    mkdir $transcoded
-    mkdir $logs
 
-    #read -p "UID to use  [$3]: " env_value
-    #env_value="${env_value:-$3}"
+    #group="$(id -g)"
+    pie_ip=$(cat .env | grep PIE_IP= | cut -d '=' -f2)
 
-    $sudo sh -c "echo \"//$pie_ip/to-transcode $to_transcode cifs credentials=$transcoder_path/.smbcredentials,iocharset=utf8,sec=ntlmssp 0 0\" >> /etc/fstab"
-    $sudo sh -c "echo \"//$pie_ip/transcoded $transcoded cifs credentials=$transcoder_path/.smbcredentials,iocharset=utf8,sec=ntlmssp 0 0\" >> /etc/fstab"
-    $sudo sh -c "echo \"//$pie_ip/logs $logs cifs credentials=$transcoder_path/.smbcredentials,iocharset=utf8,sec=ntlmssp 0 0\" >> /etc/fstab"
 
+    folders=( $to_transcode $transcoded $logs )
+    for i in "${folders[@]}"
+    do
+        if ! grep -q "$i" "/etc/fstab"; then
+            mkdir -p $i
+            $sudo chown $username $i
+            $sudo chgrp $username $i
+            $sudo sh -c "echo \"//$pie_ip/to-transcode $i cifs uid=$username,gid=$username,credentials=$transcoder_path/.smbcredentials,iocharset=utf8,sec=ntlmssp 0 0\" >> /etc/fstab"
+        fi
+    done
+    
     $sudo mount -a
 fi
 
