@@ -1,3 +1,5 @@
+#!/bin/bash
+
 # Assume windows if not Linux.
 # The script would need presumably modifications to run on Mac, yet I do not have a machine to test this on
 if [  $(uname -s) = "Darwin" ]; then
@@ -17,7 +19,7 @@ fi
 transcoder_path="$( cd "$( dirname "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )"
 
 # Get environment variables & go to transcoder
-pie_ip=$(cat .env | grep PIE_IP= | cut -d '=' -f2)
+pie_ip=$(cat $transcoder_path/.env | grep PIE_IP= | cut -d '=' -f2)
 
 # Activate venv and set pie path (the path will be different for Windows and Linux transcoder)
 if [ $os = "windows" ]; then  
