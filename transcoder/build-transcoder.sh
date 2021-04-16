@@ -72,14 +72,17 @@ else
     pie_ip=$(cat .env | grep PIE_IP= | cut -d '=' -f2)
 
 
-    folders=( $to_transcode $transcoded $logs )
-    for i in "${folders[@]}"
+    folderpaths=( $to_transcode $transcoded $logs )
+    foldernames=( "to-transcode" "transcoded" "logs" )
+    for (( i=0; i<${#folderpaths[@]}; i++));
     do
-        if ! grep -q "$i" "/etc/fstab"; then
-            mkdir -p $i
-            $sudo chown $username $i
-            $sudo chgrp $username $i
-            $sudo sh -c "echo \"//$pie_ip/to-transcode $i cifs uid=$username,gid=$username,credentials=$transcoder_path/.smbcredentials,iocharset=utf8,sec=ntlmssp 0 0\" >> /etc/fstab"
+        folderpath="${folderpaths[$i]}"
+        foldername="${foldernames[i]}"
+        if ! grep -q "$folderpath" "/etc/fstab"; then
+            mkdir -p $folderpath
+            $sudo chown $username $folderpath
+            $sudo chgrp $username $folderpath
+            $sudo sh -c "echo \"//$pie_ip/$foldername $folderpath cifs uid=$username,gid=$username,credentials=$transcoder_path/.smbcredentials,iocharset=utf8,sec=ntlmssp 0 0\" >> /etc/fstab"
         fi
     done
     
