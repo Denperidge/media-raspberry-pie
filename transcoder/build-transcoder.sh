@@ -26,11 +26,16 @@ $sudo chown $username $transcoder_path
 cd $transcoder_path || exit 1  # Exit on fail
 
 # Setup .env
-# setup_env(prompt, key, default_value)
+# setup_env(prompt, key, default_value, outputfile)
 function setup_env {
     read -p "$1 [$3]: " env_value
     env_value="${env_value:-$3}"
-    echo "$2=$env_value" >> .env
+    if [ ! "$4" ]; then  # If outputfule isn't set, default to env
+        outputfile=".env"
+    else
+        outputfile="$4"
+    fi
+    echo "$2=$env_value" >> $outputfile
 }
 
 setup_env "Sonarr port" PORT_SONARR 8989
@@ -38,8 +43,39 @@ setup_env "Radarr port" PORT_RADARR 7878
 setup_env "Sonarr API key" APIKEY_SONARR
 setup_env "Radarr API key" APIKEY_RADARR
 setup_env "IP Address of RPI" PIE_IP
-setup_env "Path to RPI Share" PIE_PATH
 
+
+# Mount samba share
+if [ $os = "windows" ]; then  
+    echo "(Windows) Smb share not automatically mounted"
+else 
+    setup_env "MediaRPI Smb username" username "" .smbcredentials
+    setup_env "MediaRPI Smb password" password "" .smbcredentials
+    sudo chmod 700 .smbcredentials
+
+    $sudo apt-get install cifs-utils  # Prerequisite
+    mount_path="/mnt/mediarpi/media"
+    $sudo mkdir -p $mount_path
+    $sudo chown $username $mount_path
+    $sudo chgrp $username $mount_path
+
+    # Make subdirectories
+    to_transcode="$mount_path/to-transcode"
+    transcoded="$mount_path/transcoded"
+    logs="$mount_path/logs"
+    mkdir $to_transcode
+    mkdir $transcoded
+    mkdir $logs
+
+    #read -p "UID to use  [$3]: " env_value
+    #env_value="${env_value:-$3}"
+
+    $sudo sh -c "echo \"//$pie_ip/to-transcode $to_transcode cifs credentials=$transcoder_path/.smbcredentials,iocharset=utf8,sec=ntlmssp 0 0\" >> /etc/fstab"
+    $sudo sh -c "echo \"//$pie_ip/transcoded $transcoded cifs credentials=$transcoder_path/.smbcredentials,iocharset=utf8,sec=ntlmssp 0 0\" >> /etc/fstab"
+    $sudo sh -c "echo \"//$pie_ip/logs $logs cifs credentials=$transcoder_path/.smbcredentials,iocharset=utf8,sec=ntlmssp 0 0\" >> /etc/fstab"
+
+    $sudo mount -a
+fi
 
 # Fetch scripts
 curl "https://raw.githubusercontent.com/Denperidge/media-raspberry-pie/master/transcoder/transcode.sh" > transcode.sh
@@ -70,7 +106,7 @@ if ! [ -d "repo" ]; then
 fi
 
 # Let transcoder work automatically
-# Windows,
+# Windows
 if [ $os = "windows" ]; then  
     curl "https://raw.githubusercontent.com/Denperidge/media-raspberry-pie/master/transcoder/windows-only/scan-hourly-for-transcode.bat" > scan-hourly-for-transcode.bat
     sed -i "s|%transcoder_path%|$transcoder_path|g" scan-hourly-for-transcode.bat
@@ -80,7 +116,7 @@ if [ $os = "windows" ]; then
     read
     explorer.exe "shell:startup"
     explorer.exe .
-else
+else  # Linux
     $sudo sh -c "echo \"\n0 *\t* * * $username $transcoder_path/transcode.sh\" >> /etc/crontab"
 fi
 

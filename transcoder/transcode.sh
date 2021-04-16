@@ -25,7 +25,7 @@ if [ $os = "windows" ]; then
     pie_path="//$pie_ip/"
 else 
     source "$transcoder_path/m4avenv/bin/activate"
-    pie_path=$(cat $transcoder_path/.env | grep PIE_PATH= | cut -d '=' -f2)
+    pie_path="/mnt/mediarpi/media/"
 fi
 
 logfile="$pie_path/logs/$(date +'%d-%m-%Y').log"
