@@ -23,7 +23,7 @@ function setup_env {
 
 # We will store all the config & video files in the path configured in .env
 # (media_path also needs to be set in .env)
-setup_env "Install location (if possible, a non sd-card is recommended)" media_path /usr/local/bin/mrpi-transcoder/
+setup_env "Install location (if possible, a non sd-card is recommended)" MEDIA_PATH /usr/local/bin/mrpi-transcoder/
 media_path=$(cat .env | grep MEDIA_PATH= | cut -d '=' -f2)
 sudo mkdir -p $media_path
 username=$(whoami)
@@ -32,11 +32,11 @@ mv .env "$media_path/.env"
 cd "$media_path"
 
 setup_env "Timezone (en.wikipedia.org/wiki/List_of_tz_database_time_zones)" TZ "$(cat /etc/timezone)"
-setup_env "Qbittorrent port" PUID 8080
+setup_env "Qbittorrent port" PORT_QBITTORRENT 8080
 setup_env "Sonarr port" PORT_SONARR 8989
 setup_env "Radarr port" PORT_RADARR 7878
-setup_env "Jackett port" PORT_RADARR 9117
-setup_env "Bazarr port" PORT_RADARR 6767
+setup_env "Jackett port" PORT_JACKETT 9117
+setup_env "Bazarr port" PORT_BAZARR 6767
 echo "The following three settings will effect ownership/permissions of the files created by docker"
 setup_env "  UID" PUID "$(id -u)"
 setup_env "  GID" PGID "$(id -g)"
