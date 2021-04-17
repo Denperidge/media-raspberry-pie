@@ -1,0 +1,19 @@
+# Example configuration for mounting another path into the containers
+# Simply uncomment everything below and configure to your liking!
+
+# version: "2.1"
+# services:
+#   sonarr:
+#     volumes:
+#       - /mnt/hdd/media/tv:/tv-hdd
+#   radarr:
+#     volumes:
+#       - /mnt/hdd/media/movies:/movies-hdd
+#   bazarr:
+#     volumes:
+#       - /mnt/hdd/media/tv:/tv-hdd
+#       - /mnt/hdd/media/movies:/movies-hdd
+#   plex:
+#     volumes:
+#       - /mnt/hdd/media/tv:/tv-hdd
+#       - /mnt/hdd/media/movies:/movies-hdd
