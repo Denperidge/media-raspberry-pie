@@ -23,7 +23,7 @@ function setup_env {
 
 # We will store all the config & video files in the path configured in .env
 # (media_path also needs to be set in .env)
-setup_env "Install location (if possible, a non sd-card is recommended)" MEDIA_PATH /usr/local/bin/mrpi-transcoder/
+setup_env "Install location (if possible, a non sd-card is recommended)" MEDIA_PATH /usr/local/bin/mrpi-media/
 media_path=$(cat .env | grep MEDIA_PATH= | cut -d '=' -f2)
 sudo mkdir -p $media_path
 username=$(whoami)
