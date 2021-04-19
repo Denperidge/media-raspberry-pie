@@ -21,6 +21,7 @@ mkdir -p -m 1777 "transcoded/radarr"
 mkdir -p -m 1777 "logs"  # Logs will be stored here 
 mkdir -p "tv"  # Directory to keep tv show files after being downloaded, scanned and transcoded
 mkdir -p "movies"  # Directory to keep movies files after being downloaded, scanned and transcoded
+mkdir -p "dockerbld"  # Directory to keep Dockerfile for qbittorrent+clamav
 
 # post-download moves downloads to the samba share
 curl "https://raw.githubusercontent.com/Denperidge/media-raspberry-pie/master/rpi/post-download.sh" > scripts/post-download.sh
@@ -29,6 +30,9 @@ chmod +x scripts/post-download.sh
 # sync-subtitles syncs subtitles downloaded by bazarr
 curl "https://raw.githubusercontent.com/Denperidge/media-raspberry-pie/master/rpi/sync-subtitles.sh" > scripts/sync-subtitles.sh
 chmod +x scripts/sync-subtitles.sh
+
+# Dockerfile to add clamav to qbittorrent
+curl "https://raw.githubusercontent.com/Denperidge/media-raspberry-pie/master/rpi/Dockerfile" > dockerbld/Dockerfile
 
 # fetch docker-compose.yml if it doesn't already exist
 if [ ! -f docker-compose.yml ]; then
