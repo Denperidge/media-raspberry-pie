@@ -82,7 +82,7 @@ else
             mkdir -p $folderpath
             $sudo chown $username $folderpath
             $sudo chgrp $username $folderpath
-            $sudo sh -c "echo \"//$pie_ip/$foldername $folderpath cifs uid=$username,gid=$username,credentials=$transcoder_path/.smbcredentials,iocharset=utf8,sec=ntlmssp 0 0\" >> /etc/fstab"
+            $sudo sh -c "echo \"//$pie_ip/$foldername $folderpath cifs uid=$username,gid=$username,credentials=$transcoder_path/.smbcredentials,iocharset=utf8,sec=ntlmssp,_netdev 0 0\" >> /etc/fstab"
         fi
     done
     
@@ -129,7 +129,7 @@ if [ $os = "windows" ]; then
     explorer.exe "shell:startup"
     explorer.exe .
 else  # Linux
-    $sudo sh -c "echo \"\n0 *\t* * * $username /usr/bin/flock -n /tmp/mrpi.lockfile $transcoder_path/transcode.sh\" >> /etc/crontab"
+    $sudo sh -c "echo \"30 *\t* * *\t$username\t/usr/bin/flock -n /tmp/mrpi.lockfile $transcoder_path/transcode.sh\" >> /etc/crontab"
 fi
 
 echo "Press ENTER to finish."
