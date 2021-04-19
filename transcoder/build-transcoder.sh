@@ -129,7 +129,7 @@ if [ $os = "windows" ]; then
     explorer.exe "shell:startup"
     explorer.exe .
 else  # Linux
-    $sudo sh -c "echo \"\n0 *\t* * * $username $transcoder_path/transcode.sh\" >> /etc/crontab"
+    $sudo sh -c "echo \"\n0 *\t* * * $username /usr/bin/flock -n /tmp/mrpi.lockfile $transcoder_path/transcode.sh\" >> /etc/crontab"
 fi
 
 echo "Press ENTER to finish."
