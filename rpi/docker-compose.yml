@@ -1,7 +1,7 @@
 version: "2.1"
 services:
   qbittorrent:
-    image: "linuxserver/qbittorrent"
+    build: dockerbld/
     container_name: qbittorrent
     environment:
       - PUID=${PUID}
@@ -21,8 +21,6 @@ services:
       - 6881:6881/udp
       - ${PORT_QBITTORRENT}:${PORT_QBITTORRENT}
     restart: unless-stopped
-    # Escape $ with $
-    command: ["/bin/bash", "-c", "apt-get update && apt-get install -y clamav >> /logs/$$(date +'%d-%m-%Y').log && freshclam >> /logs/$$(date +'%d-%m-%Y').log && sudo chmod 777 /logs/$$(date +'%d-%m-%Y').log && /init"]
 
   sonarr:
     image: linuxserver/sonarr

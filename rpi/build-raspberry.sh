@@ -56,6 +56,7 @@ mkdir -p -m 1777 "transcoded/radarr"
 mkdir -p -m 1777 "logs"  # Logs will be stored here 
 mkdir -p "tv"  # Directory to keep tv show files after being downloaded, scanned and transcoded
 mkdir -p "movies"  # Directory to keep movies files after being downloaded, scanned and transcoded
+mkdir -p "dockerbld"  # Directory to keep Dockerfile for qbittorrent+clamav
 
 # post-download moves downloads to the samba share
 curl "https://raw.githubusercontent.com/Denperidge/media-raspberry-pie/master/rpi/post-download.sh" > scripts/post-download.sh
@@ -74,6 +75,10 @@ curl "https://raw.githubusercontent.com/Denperidge/media-raspberry-pie/master/rp
 if [ ! -f docker-compose.override.yml ]; then
     curl "https://raw.githubusercontent.com/Denperidge/media-raspberry-pie/master/rpi/docker-compose.override.yml" > docker-compose.override.yml
 fi
+
+# Dockerfile to add clamav to qbittorrent
+curl "https://raw.githubusercontent.com/Denperidge/media-raspberry-pie/master/rpi/Dockerfile" > dockerbld/Dockerfile
+
 sudo docker-compose up --detach
 
 
